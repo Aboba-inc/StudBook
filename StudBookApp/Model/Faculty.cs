@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+
 namespace StudBookApp.Model
 {
     internal class Faculty
     {
         public int Number { get; }
-        public Cathedra[] Cathedras;
+        public Cathedra[]? Cathedras;
  
         public Faculty(int number)
         {

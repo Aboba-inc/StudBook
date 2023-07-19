@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace StudBookApp.Model
 {
-    internal class Cathedra
+    internal class Specialty
     {
         public int Number { get; set; }
-        public Specialty[]? Specialties { get; set; }
+        public LearningProgram[]? LearningPrograms { get; set; }
 
-        public Cathedra(int number)
+        public Specialty(int number)
         {
             if (number < 0)
             {
@@ -18,9 +17,9 @@ namespace StudBookApp.Model
             Number = number;
         }
 
-        public Cathedra(int number, Specialty[] specialties) : this(number)
+        public Specialty(int number, LearningProgram[] learningPrograms) : this(number)
         {
-            Specialties = specialties;
+            LearningPrograms = learningPrograms;
         }
     }
 }
