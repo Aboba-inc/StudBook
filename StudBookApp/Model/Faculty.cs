@@ -17,7 +17,7 @@ namespace StudBookApp.Model
             Number = number;
         }
 
-        public Faculty(int number, Cathedra[] cathedras) : this(number)
+        public Faculty(int number = 1, Cathedra[] cathedras) : this(number)
         {
             Cathedras = cathedras;
         }
