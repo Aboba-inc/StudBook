@@ -1,4 +1,6 @@
-﻿namespace StudBookApp.ViewModels;
+﻿using StudBookApp.ViewModels.Base;
+
+namespace StudBookApp.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

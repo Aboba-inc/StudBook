@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace StudBookApp.ViewModels;
+namespace StudBookApp.ViewModels.Base;
 
 public class ViewModelBase : ReactiveObject, INotifyPropertyChanged
 {
