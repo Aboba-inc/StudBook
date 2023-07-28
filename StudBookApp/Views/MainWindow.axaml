@@ -1,26 +1,26 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
-        xmlns:views="clr-namespace:StudBookApp.Views"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
+		xmlns:views="clr-namespace:StudBookApp.Views"
 		xmlns:vm="clr-namespace:StudBookApp.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="590" d:DesignHeight="540"
-        x:Class="StudBookApp.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+		mc:Ignorable="d" d:DesignWidth="590" d:DesignHeight="540"
+		x:Class="StudBookApp.Views.MainWindow"
+		Icon="/Assets/avalonia-logo.ico"
 		Width="590" Height="540"
-        Title="StudBookApp"
+		Title="StudBookApp"
 		CornerRadius="5"
 		WindowStartupLocation="CenterScreen"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome"
-        ExtendClientAreaTitleBarHeightHint="-1"
+		ExtendClientAreaToDecorationsHint="True"
+		ExtendClientAreaChromeHints="NoChrome"
+		ExtendClientAreaTitleBarHeightHint="-1"
 		Classes ="window"
 		x:DataType="vm:MainViewModel">
 
 	<Design.DataContext>
 		<!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<!--<vm:MainViewModel />-->
 	</Design.DataContext>
 
@@ -70,7 +70,7 @@
 			<!-- Combo boxes -->
 			<Grid Grid.Row="0"
 				  Background="#10101C"
-	          
+			  
 			  
 				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
 				  RowDefinitions="0.5*, *, *, 0.1*">

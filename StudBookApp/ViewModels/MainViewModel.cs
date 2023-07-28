@@ -38,10 +38,10 @@ public class MainViewModel : ViewModelBase
         CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
 
         ChangeThemeCommand = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
-            {
-                Theme.Default => Theme.New,
-                Theme.New => Theme.Default,
-                _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
-            }));
-        }
+        {
+            Theme.Default => Theme.New,
+            Theme.New => Theme.Default,
+            _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
+        }));
+    }
 }
