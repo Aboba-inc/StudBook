@@ -9,7 +9,7 @@ namespace StudBookApp.Model
 
         public Cathedra(int number)
         {
-            if (number < 0)
+            if (number < 1)
             {
                 throw new ArgumentOutOfRangeException(nameof(number));
             }
