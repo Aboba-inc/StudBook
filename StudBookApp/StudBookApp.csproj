@@ -9,6 +9,15 @@
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Include="Styles\**" /> 
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <AvaloniaResource Remove="Styles\Default.axaml" />
+    <AvaloniaResource Remove="Styles\New.axaml" />
+    <AvaloniaResource Remove="Styles\StyleHelpers\StyleManager.cs" />
+    <AvaloniaResource Remove="Styles\StyleHelpers\Theme.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,5 +27,11 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Update="Styles\New.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaXaml>
   </ItemGroup>
 </Project>

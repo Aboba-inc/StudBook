@@ -1,12 +1,118 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:StudBookApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
         xmlns:views="clr-namespace:StudBookApp.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:vm="clr-namespace:StudBookApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="590" d:DesignHeight="540"
         x:Class="StudBookApp.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="StudBookApp">
-        <views:MainView />
+		Width="590" Height="540"
+        Title="StudBookApp"
+		CornerRadius="5"
+		WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+		Classes ="window"
+		x:DataType="vm:MainViewModel">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<!--<vm:MainViewModel />-->
+	</Design.DataContext>
+
+	<!--<UserControl.Styles>
+		<Style Selector="titlebars|WindowsTitleBar">
+			<Setter Property="CustomBackground" Value="Yellow"/>
+		</Style>
+	</UserControl.Styles>-->
+
+	<DockPanel>
+
+		<titlebars:WindowsTitleBar Name="TitleBar" Classes="titlebar" IsSeamless="True"/>
+
+
+		<Grid RowDefinitions="*, 3*"
+			  Classes ="main"
+			  >
+
+			<!-- Title bar -->
+			<Grid Grid.Row="1">
+
+				<Button
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="5"
+						Background="Orange"
+						HorizontalAlignment="Right"
+						Command="{Binding CloseApplicationCommand}"
+						Content="x"/>
+
+				<Button
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="5"
+						Background="Green"
+						Command="{Binding ChangeThemeCommand}"
+						Content="Change Theme"/>
+
+			</Grid>
+
+			<!-- Combo boxes -->
+			<Grid Grid.Row="0"
+				  Background="#10101C"
+	          
+			  
+				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
+				  RowDefinitions="0.5*, *, *">
+
+
+
+				<ComboBox Grid.Row="1" Grid.Column="1"
+						  HorizontalAlignment="Stretch"
+						  VerticalAlignment="Center"
+						  Margin="0, 0, 8, 0">
+
+				</ComboBox>
+
+				<ComboBox Grid.Row="1" Grid.Column="2"
+						  HorizontalAlignment="Stretch"
+						  VerticalAlignment="Center"
+						  Margin="4, 0, 4, 0">
+
+				</ComboBox>
+
+				<ComboBox Grid.Row="1" Grid.Column="3"
+						  HorizontalAlignment="Stretch"
+						  VerticalAlignment="Center"
+						  Margin="8, 0, 0, 0">
+
+				</ComboBox>
+
+
+				<ComboBox Grid.Row="2" Grid.Column="1"
+						  Grid.ColumnSpan="2"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Stretch"
+						  Margin="0, 0, 80, 20">
+
+				</ComboBox>
+
+				<ComboBox Grid.Row="2" Grid.Column="2"
+						  Grid.ColumnSpan="2"
+					  VerticalAlignment="Center"
+						  HorizontalAlignment="Stretch"
+						  Margin="80, 0, 0, 20">
+
+				</ComboBox>
+
+
+			</Grid>
+
+		</Grid>
+	</DockPanel>
+
 </Window>
