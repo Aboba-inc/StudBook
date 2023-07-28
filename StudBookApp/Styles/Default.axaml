@@ -23,6 +23,11 @@
 		
 		<SolidColorBrush x:Key="WindowBackground"
 						 Color="#22223B" />
+
+		<SolidColorBrush x:Key="TitleBarBackground"
+						 Color="#4A4E69" />
+		<SolidColorBrush x:Key="TitleBarForeground"
+						 Color="White" />
 		
 		<SolidColorBrush x:Key="ComboBoxBackground"
 						 Color="#F2E9E4" />
@@ -58,7 +63,21 @@
 	</Style>
 
 	<Style Selector="titlebars|WindowsTitleBar.titlebar">
-		<Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+		<Setter Property="Background" Value="{StaticResource TitleBarBackground}"/>
+
+		<Style Selector="^ MenuItem">
+			<Setter Property="Foreground" Value="{StaticResource TitleBarForeground}"/>
+		</Style>
+
+		<Style Selector="^ MenuItem > MenuItem">
+			<Setter Property="Foreground" Value="Black"/>
+		</Style>
+
+		<Style Selector="^ Path">
+			<Setter Property="Fill" Value="{StaticResource TitleBarForeground}"/>
+		</Style>
 	</Style>
+	
+	
 	
 </Styles>

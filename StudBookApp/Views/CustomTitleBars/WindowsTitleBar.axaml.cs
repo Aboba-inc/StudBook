@@ -24,7 +24,7 @@ namespace StudBookApp.Views.CustomTitleBars
         private DockPanel titleBar;
         private DockPanel titleBarBackground;
         private TextBlock systemChromeTitle;
-        private NativeMenuBar seamlessMenuBar;
+        private Menu seamlessMenuBar;
         private NativeMenuBar defaultMenuBar;
 
         public static readonly StyledProperty<bool> IsSeamlessProperty =
@@ -83,9 +83,9 @@ namespace StudBookApp.Views.CustomTitleBars
                     defaultMenuBar != null)
                 {
                     //titleBarBackground.IsVisible = IsSeamless ? false : true;
-                    //systemChromeTitle.IsVisible = IsSeamless ? false : true;
-                    //seamlessMenuBar.IsVisible = IsSeamless ? true : false;
-                    seamlessMenuBar.IsVisible = false;
+                    systemChromeTitle.IsVisible = IsSeamless ? false : true;
+                    seamlessMenuBar.IsVisible = IsSeamless ? true : false;
+                    //seamlessMenuBar.IsVisible = false;
                     defaultMenuBar.IsVisible = IsSeamless ? false : true;
 
                     if (IsSeamless == false)
@@ -121,7 +121,7 @@ namespace StudBookApp.Views.CustomTitleBars
                 titleBar = this.FindControl<DockPanel>("TitleBar");
                 titleBarBackground = this.FindControl<DockPanel>("TitleBarBackground");
                 systemChromeTitle = this.FindControl<TextBlock>("SystemChromeTitle");
-                seamlessMenuBar = this.FindControl<NativeMenuBar>("SeamlessMenuBar");
+                seamlessMenuBar = this.FindControl<Menu>("SeamlessMenuBar");
                 defaultMenuBar = this.FindControl<NativeMenuBar>("DefaultMenuBar");
 
 

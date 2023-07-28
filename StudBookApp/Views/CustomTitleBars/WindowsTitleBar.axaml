@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="StudBookApp.Views.CustomTitleBars.WindowsTitleBar"
-			 DockPanel.Dock="Top">
+			 DockPanel.Dock="Top"
+			 xmlns:vm="clr-namespace:StudBookApp.ViewModels"
+			 x:DataType="vm:MainViewModel">
 	<StackPanel>
 		<Grid>
 			<!--The proper way would be not to use white as default, but somehow retrieve the users' window chrome color.-->
@@ -15,16 +17,33 @@
 				<StackPanel Orientation="Horizontal"
 							DockPanel.Dock="Left"
 							Spacing="0">
-					<Image Source="/Assets/Icon.ico"
+					<Image Source="/Assets/icon.ico"
 						   Height="20"
 						   Width="20"
 						   VerticalAlignment="Center"
 						   Margin="5,0,3,0"
 						   Name="WindowIcon"></Image>
-					<NativeMenuBar DockPanel.Dock="Top"
-								   Width="100"
+					
+					<!--<NativeMenuBar DockPanel.Dock="Top"
+								   Width="120"
 								   HorizontalAlignment="Left"
-								   Name="SeamlessMenuBar"></NativeMenuBar>
+								   Name="SeamlessMenuBar"></NativeMenuBar>-->
+
+					<Menu DockPanel.Dock="Top"
+								   Width="120"
+								   HorizontalAlignment="Left"
+								   Name="SeamlessMenuBar">
+						<MenuItem Header="Menu">
+							<MenuItem Header="Exit"
+											InputGesture ="CTRL+Q"
+											Command="{Binding CloseApplicationCommand}"/>
+						</MenuItem>
+						<MenuItem Header="View">
+							<MenuItem Header="Switch Theme"
+											Command="{Binding ChangeThemeCommand}"/>
+						</MenuItem>
+					</Menu>
+					
 					<TextBlock Text="Studen Book"
 							   FontSize="12"
 							   Foreground="White"
@@ -52,10 +71,12 @@
 							<Style Selector="Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
 								<Setter Property="Background" Value="Transparent"/>
 							</Style>
+							<!--<Style Selector="Button:not(:pointerover) > Path">
+								<Setter Property="Fill" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+							</Style>-->
 						</Button.Styles>
 						<Path Margin="10,10,10,0"
 							  Stretch="Uniform"
-							  Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
 							  Data="M2048 1229v-205h-2048v205h2048z"></Path>
 					</Button>
 
@@ -78,10 +99,12 @@
 							<Style Selector="Button:not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
 								<Setter Property="Background" Value="Transparent"/>
 							</Style>
+							<!--<Style Selector="Button:not(:pointerover) > Path">
+								<Setter Property="Fill" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+							</Style>-->
 						</Button.Styles>
 						<Path Margin="10,5,10,0"
 							  Stretch="Uniform"
-							  Fill="{DynamicResource SystemControlForegroundBaseHighBrush}"
 							  Name="MaximizeIcon"
 							  Data="M2048 2048v-2048h-2048v2048h2048zM1843 1843h-1638v-1638h1638v1638z"></Path>
 					</Button>
@@ -104,9 +127,9 @@
 							<Style Selector="Button:pointerover > Path">
 								<Setter Property="Fill" Value="White"/>
 							</Style>
-							<Style Selector="Button:not(:pointerover) > Path">
+							<!--<Style Selector="Button:not(:pointerover) > Path">
 								<Setter Property="Fill" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-							</Style>
+							</Style>-->
 						</Button.Styles>
 						<Path Margin="10,5,10,0"
 							  Stretch="Uniform"

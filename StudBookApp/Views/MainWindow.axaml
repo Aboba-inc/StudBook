@@ -30,10 +30,16 @@
 		</Style>
 	</UserControl.Styles>-->
 
+	<Window.KeyBindings>
+		<KeyBinding Gesture="CTRL+Q"
+					Command="{Binding CloseApplicationCommand}"></KeyBinding>
+	</Window.KeyBindings>
+
 	<DockPanel>
 
-		<titlebars:WindowsTitleBar Name="TitleBar" Classes="titlebar" IsSeamless="True"/>
-
+		<titlebars:WindowsTitleBar Name="TitleBar"
+								   Classes="titlebar"
+								   IsSeamless="True"/>
 
 		<Grid RowDefinitions="*, 3*"
 			  Classes ="main"
@@ -67,7 +73,7 @@
 	          
 			  
 				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
-				  RowDefinitions="0.5*, *, *">
+				  RowDefinitions="0.5*, *, *, 0.1*">
 
 
 
