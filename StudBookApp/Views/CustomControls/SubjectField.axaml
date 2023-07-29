@@ -1,0 +1,67 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:StudBookApp.Views.CustomControls">
+	<Design.PreviewWith>
+
+		<Grid>
+			<controls:SubjectField ></controls:SubjectField>
+		</Grid>
+
+	</Design.PreviewWith>
+
+	<Style Selector="controls|SubjectField">
+		<!-- Set Defaults -->
+		<Setter Property="Template">
+			<ControlTemplate>
+
+				<Border Padding="5">
+					<Grid RowDefinitions="1.2*, *"
+		  ColumnDefinitions="*, *">
+
+						<TextBox Grid.Row="0"
+								 Grid.Column="0"
+								 Grid.ColumnSpan="2"
+								 Name="SubjectTextBox"
+								 Watermark="Предмет"
+								 TextAlignment="Center"
+								 VerticalAlignment="Center"
+								 Margin="0, 0, 0, 2"
+								 CornerRadius="9"
+								 Background="{TemplateBinding BackgroundSubject}"
+								 Foreground="{TemplateBinding Foreground}"
+								 Text="{TemplateBinding TextSubject}"/>
+
+						<TextBox Grid.Row="1"
+								 Grid.Column="0"
+								 Name="CreditTextBox"
+								 Watermark="Кредит"
+								 TextAlignment="Center"
+								 VerticalAlignment="Center"
+								 Margin="0, 2, 2, 0"
+								 CornerRadius="9"
+								 Background="{TemplateBinding BackgroundCredit}"
+								 Foreground="{TemplateBinding Foreground}"
+								 Text="{TemplateBinding TextCredit}"/>
+
+						<TextBox Grid.Row="1"
+								 Grid.Column="1"
+								 Name="GradeTextBox"
+								 Watermark="Бал"
+								 TextAlignment="Center"
+								 VerticalAlignment="Center"
+								 Margin="2, 2, 0, 0"
+								 CornerRadius="9"
+								 Background="{TemplateBinding BackgroundGrade}"
+								 Foreground="{TemplateBinding Foreground}"
+								 Text="{TemplateBinding TextGrade}"/>
+					</Grid>
+				</Border>
+
+			</ControlTemplate>
+		</Setter>
+
+		<Setter Property="BackgroundSubject" Value="#F2E9E4"/>
+		<Setter Property="BackgroundCredit" Value="#D3D3D3"/>
+		<Setter Property="BackgroundGrade" Value="#D3D3D3"/>
+	</Style>
+</Styles>

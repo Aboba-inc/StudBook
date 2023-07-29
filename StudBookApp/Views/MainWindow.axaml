@@ -2,7 +2,8 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
+		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars"
+		xmlns:controls="clr-namespace:StudBookApp.Views.CustomControls"
 		xmlns:views="clr-namespace:StudBookApp.Views"
 		xmlns:vm="clr-namespace:StudBookApp.ViewModels"
 		mc:Ignorable="d" d:DesignWidth="590" d:DesignHeight="540"
@@ -42,42 +43,19 @@
 								   Classes="titlebar"
 								   IsSeamless="True"/>
 
-		<Grid RowDefinitions="*, 3*"
-			  Classes ="main"
-			  >
-
-			<!-- Title bar -->
-			<Grid Grid.Row="1">
-
-				<Button 
-						Grid.Row="0"
-						Grid.Column="0"
-						Grid.ColumnSpan="5"
-						Background="Orange"
-						HorizontalAlignment="Right"
-						Command="{Binding CloseApplicationCommand}"
-						Content="x"/>
-
-				<Button
-						Grid.Row="0"
-						Grid.Column="0"
-						Grid.ColumnSpan="5"
-						Background="Green"
-						Command="{Binding ChangeThemeCommand}"
-						Content="Change Theme"/>
-
-			</Grid>
+		<Grid RowDefinitions="*, 3.4*"
+			  Classes ="main">
 
 			<!-- Combo boxes -->
 			<Grid Grid.Row="0"
-				  Background="#10101C"
 				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
-				  RowDefinitions="0.5*, *, *, 0.1*">
+				  RowDefinitions="0.5*, 1.5*, 0.5*">
 
 
 
 				<ComboBox Grid.Row="1" Grid.Column="1"
 						  HorizontalAlignment="Stretch"
+						  
 						  VerticalAlignment="Center"
 						  Margin="0, 0, 8, 0">
 
@@ -115,6 +93,37 @@
 				</ComboBox>
 
 
+			</Grid>
+
+			<Grid Grid.Row="1"
+				  RowDefinitions="0.1*, *, *, *, *, 0.6*"
+				  ColumnDefinitions="*, 5*, 5*, *">
+
+				<controls:SubjectField Grid.Row="1"
+									   Grid.Column="1"/>
+				<controls:SubjectField Grid.Row="2"
+									   Grid.Column="1"/>
+				<controls:SubjectField Grid.Row="3"
+									   Grid.Column="1"/>
+				<controls:SubjectField Grid.Row="4"
+									   Grid.Column="1"/>
+
+				<controls:SubjectField Grid.Row="1"
+									   Grid.Column="2"/>
+				<controls:SubjectField Grid.Row="2"
+									   Grid.Column="2"/>
+				<controls:SubjectField Grid.Row="3"
+									   Grid.Column="2"/>
+				<controls:SubjectField Grid.Row="4"
+									   Grid.Column="2"/>
+				
+				<TextBlock Grid.Row="5"
+						   Grid.ColumnSpan="4"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   Foreground="#F2E9E4"
+						   Text="100"
+						   FontSize="30"/>
 			</Grid>
 
 		</Grid>

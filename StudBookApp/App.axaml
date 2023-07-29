@@ -14,6 +14,7 @@
 	</Application.Styles>
 
 	<Application.Styles>
+		<StyleInclude Source = "/Views/CustomControls/SubjectField.axaml" />
 		<StyleInclude Source = "/Themes/New.axaml" />
 		<StyleInclude Source = "/Themes/Default.axaml" />
 	</Application.Styles>
