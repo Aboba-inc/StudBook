@@ -5,12 +5,12 @@ using Avalonia.Markup.Xaml.Styling;
 
 using System;
 
-namespace StudBookApp.Styles.StyleHelpers
+namespace StudBookApp.Themes.StyleHelpers
 {
     public sealed class StyleManager
     {
-        private readonly StyleInclude _defaultStyle = CreateStyle("avares://StudBookApp/Styles/Default.axaml");
-        private readonly StyleInclude _newStyle = CreateStyle("avares://StudBookApp/Styles/New.axaml");
+        private readonly StyleInclude _defaultStyle = CreateStyle("avares://StudBookApp/Themes/Default.axaml");
+        private readonly StyleInclude _newStyle = CreateStyle("avares://StudBookApp/Themes/New.axaml");
         private readonly Window _window;
 
         public StyleManager(Window window)
@@ -64,7 +64,7 @@ namespace StudBookApp.Styles.StyleHelpers
             //    Source = new Uri(url)
             //};
 
-            return new StyleInclude(new Uri("resm:Styles?assembly=StudBookApp"))
+            return new StyleInclude(new Uri("resm:Themes?assembly=StudBookApp"))
             {
                 Source = new Uri(url)
             };

@@ -4,8 +4,15 @@ using Avalonia.Markup.Xaml;
 
 using StudBookApp.ViewModels;
 using StudBookApp.Views;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
+
+using System;
 namespace StudBookApp;
-using StudBookApp.Styles.StyleHelpers;
+
+using Avalonia.Markup.Xaml.Styling;
+using StudBookApp.Themes.StyleHelpers;
+using System;
 
 public partial class App : Application
 {
@@ -13,6 +20,22 @@ public partial class App : Application
     {
         AvaloniaXamlLoader.Load(this);
     }
+
+    public static Styles FluentDark = new Styles
+        {
+            new StyleInclude(new Uri("avares://ControlCatalog/Styles"))
+            {
+                Source = new Uri("avares://Avalonia.Themes.Fluent/FluentDark.xaml")
+            },
+        };
+
+    public static Styles FluentLight = new Styles
+        {
+            new StyleInclude(new Uri("avares://ControlCatalog/Styles"))
+            {
+                Source = new Uri("avares://Avalonia.Themes.Fluent/FluentLight.xaml")
+            },
+        };
 
     public override void OnFrameworkInitializationCompleted()
     {

@@ -9,15 +9,15 @@
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-    <AvaloniaResource Include="Styles\**" /> 
+    <AvaloniaResource Include="Themes\**" /> 
   </ItemGroup>
 
   
   <ItemGroup>
-    <AvaloniaResource Remove="Styles\Default.axaml" />
-    <AvaloniaResource Remove="Styles\New.axaml" />
-    <AvaloniaResource Remove="Styles\StyleHelpers\StyleManager.cs" />
-    <AvaloniaResource Remove="Styles\StyleHelpers\Theme.cs" />
+    <AvaloniaResource Remove="Themes\Default.axaml" />
+    <AvaloniaResource Remove="Themes\New.axaml" />
+    <AvaloniaResource Remove="Themes\StyleHelpers\StyleManager.cs" />
+    <AvaloniaResource Remove="Themes\StyleHelpers\Theme.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Update="Styles\New.axaml">
+    <AvaloniaXaml Update="Themes\New.axaml">
       <SubType>Designer</SubType>
     </AvaloniaXaml>
   </ItemGroup>

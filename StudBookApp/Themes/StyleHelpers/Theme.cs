@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudBookApp.Styles.StyleHelpers;
+namespace StudBookApp.Themes.StyleHelpers;
 
     public enum Theme
     {

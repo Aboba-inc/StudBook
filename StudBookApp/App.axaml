@@ -14,7 +14,7 @@
 	</Application.Styles>
 
 	<Application.Styles>
-		<StyleInclude Source = "/Styles/New.axaml" />
-		<StyleInclude Source = "/Styles/Default.axaml" />
+		<StyleInclude Source = "/Themes/New.axaml" />
+		<StyleInclude Source = "/Themes/Default.axaml" />
 	</Application.Styles>
 </Application>

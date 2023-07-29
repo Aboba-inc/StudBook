@@ -43,8 +43,7 @@
 	<!--<Style Selector = "ComboBox/template/ContentPresenter">
 		<Setter Property = "CornerRadius" Value = "20" />
 	</Style>-->
-	<Style Selector = "ComboBox">
-		
+	<Style Selector = "ComboBox">	
 		<Style Selector = "^:pointerover/template/Border#Background">
 			<Setter Property = "Background" Value ="{StaticResource ComboBoxBackgroundHover}" />
 		</Style>
@@ -65,12 +64,16 @@
 	<Style Selector="titlebars|WindowsTitleBar.titlebar">
 		<Setter Property="Background" Value="{StaticResource TitleBarBackground}"/>
 
-		<Style Selector="^ MenuItem">
+		<Style Selector="^ Menu > MenuItem">
 			<Setter Property="Foreground" Value="{StaticResource TitleBarForeground}"/>
-		</Style>
 
-		<Style Selector="^ MenuItem > MenuItem">
-			<Setter Property="Foreground" Value="Black"/>
+			<Style Selector = "^:pointerover/template/ContentPresenter">
+				<Setter Property = "Foreground" Value ="{StaticResource TitleBarForeground}" />
+			</Style>
+
+			<Style Selector = "^:not(:pointerover)/template/ContentPresenter">
+				<Setter Property = "Foreground" Value ="{StaticResource TitleBarForeground}" />
+			</Style>
 		</Style>
 
 		<Style Selector="^ Path">

@@ -6,7 +6,7 @@ using ReactiveUI;
 using StudBookApp.ViewModels.Base;
 using System;
 using System.Reactive;
-using StudBookApp.Styles.StyleHelpers;
+using StudBookApp.Themes.StyleHelpers;
 
 namespace StudBookApp.ViewModels;
 
