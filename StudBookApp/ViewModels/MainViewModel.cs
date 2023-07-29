@@ -30,6 +30,15 @@ public class MainViewModel : ViewModelBase
     }
 
     public ReactiveCommand<Unit, Unit> ChangeThemeCommand { get; }
+    void ChangeTheme(StyleManager? styles)
+    {
+        styles?.UseTheme(styles.CurrentTheme switch
+        {
+            Theme.Default => Theme.New,
+            Theme.New => Theme.Default,
+            _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
+        });
+    }
 
     #endregion
 
@@ -37,11 +46,6 @@ public class MainViewModel : ViewModelBase
     {
         CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
 
-        ChangeThemeCommand = ReactiveCommand.Create(() => styles.UseTheme(styles.CurrentTheme switch
-        {
-            Theme.Default => Theme.New,
-            Theme.New => Theme.Default,
-            _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
-        }));
+        ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
     }
 }
