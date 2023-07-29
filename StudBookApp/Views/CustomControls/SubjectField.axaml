@@ -1,6 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:StudBookApp.Views.CustomControls">
+        xmlns:controls="using:StudBookApp.Views.CustomControls"
+		xmlns:vm="clr-namespace:StudBookApp.ViewModels"
+		x:DataType="vm:MainViewModel">
 	<Design.PreviewWith>
 
 		<Grid>

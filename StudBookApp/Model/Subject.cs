@@ -8,15 +8,20 @@ namespace StudBookApp.Model
         public double Credits { get; set; }
         public int Grade { get; set; }
 
-        public Subject(string name, double creadits = 0.0, int grade = 0)
+        public Subject(string name, double credits = 0.0, int grade = 0)
         {
-            if (creadits < 0 || creadits > 10)
+            if (credits < 0 || credits > 10)
             {
-                throw new ArgumentOutOfRangeException(nameof(creadits));
+                throw new ArgumentOutOfRangeException(nameof(credits));
+            }
+
+            if (grade < 0 || grade > 100)
+            {
+                throw new ArgumentOutOfRangeException(nameof(grade));
             }
 
             Name = name;
-            Credits = creadits;
+            Credits = credits;
             Grade = grade;
         }
     }

@@ -51,78 +51,74 @@
 				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
 				  RowDefinitions="0.5*, 1.5*, 0.5*">
 
-
-
 				<ComboBox Grid.Row="1" Grid.Column="1"
 						  HorizontalAlignment="Stretch"
 						  
 						  VerticalAlignment="Center"
-						  Margin="0, 0, 8, 0">
-
-				</ComboBox>
+						  Margin="0, 0, 8, 0"/>
 
 				<ComboBox Grid.Row="1" Grid.Column="2"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Center"
-						  Margin="4, 0, 4, 0">
-
-				</ComboBox>
+						  Margin="4, 0, 4, 0"/>
 
 				<ComboBox Grid.Row="1" Grid.Column="3"
 						  HorizontalAlignment="Stretch"
 						  VerticalAlignment="Center"
-						  Margin="8, 0, 0, 0">
-
-				</ComboBox>
+						  Margin="8, 0, 0, 0"/>
 
 
 				<ComboBox Grid.Row="2" Grid.Column="1"
 						  Grid.ColumnSpan="2"
 						  VerticalAlignment="Center"
 						  HorizontalAlignment="Stretch"
-						  Margin="0, 0, 80, 20">
-
-				</ComboBox>
+						  Margin="0, 0, 80, 20"/>
 
 				<ComboBox Grid.Row="2" Grid.Column="2"
 						  Grid.ColumnSpan="2"
 					  VerticalAlignment="Center"
 						  HorizontalAlignment="Stretch"
-						  Margin="80, 0, 0, 20">
-
-				</ComboBox>
-
-
+						  Margin="80, 0, 0, 20"/>
 			</Grid>
-
+			
+			<!-- Main Fields -->
 			<Grid Grid.Row="1"
 				  RowDefinitions="0.1*, *, *, *, *, 0.6*"
 				  ColumnDefinitions="*, 5*, 5*, *">
 
-				<controls:SubjectField Grid.Row="1"
+				<controls:SubjectField Name="Subject1" 
+									   Grid.Row="1"
 									   Grid.Column="1"/>
-				<controls:SubjectField Grid.Row="2"
+				<controls:SubjectField Name="Subject3" 
+									   Grid.Row="2"
 									   Grid.Column="1"/>
-				<controls:SubjectField Grid.Row="3"
+				<controls:SubjectField Name="Subject5" 
+									   Grid.Row="3"
 									   Grid.Column="1"/>
-				<controls:SubjectField Grid.Row="4"
+				<controls:SubjectField Name="Subject7" 
+									   Grid.Row="4"
 									   Grid.Column="1"/>
 
-				<controls:SubjectField Grid.Row="1"
+				<controls:SubjectField Name="Subject2" 
+									   Grid.Row="1"
 									   Grid.Column="2"/>
-				<controls:SubjectField Grid.Row="2"
+				<controls:SubjectField Name="Subject4" 
+									   Grid.Row="2"
 									   Grid.Column="2"/>
-				<controls:SubjectField Grid.Row="3"
+				<controls:SubjectField Name="Subject6" 
+									   Grid.Row="3"
 									   Grid.Column="2"/>
-				<controls:SubjectField Grid.Row="4"
+				<controls:SubjectField Name="Subject8" 
+									   Grid.Row="4"
 									   Grid.Column="2"/>
 				
-				<TextBlock Grid.Row="5"
+				<TextBlock Name="StudentGrade"
+						   Grid.Row="5"
 						   Grid.ColumnSpan="4"
 						   HorizontalAlignment="Center"
 						   VerticalAlignment="Center"
 						   Foreground="#F2E9E4"
-						   Text="100"
+						   Text="0"
 						   FontSize="30"/>
 			</Grid>
 
