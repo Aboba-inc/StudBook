@@ -65,17 +65,6 @@ namespace StudBookApp.Views.CustomControls
             set { SetValue(TextGradeProperty, value); }
         }
 
-        //public static readonly StyledProperty<Action<object, KeyEventArgs>> GradeKeyDownProperty =
-        //AvaloniaProperty.Register<SubjectField, Action<object, KeyEventArgs>>(nameof(GradeKeyDown));
-
-
-
-        //public Action<object, KeyEventArgs> GradeKeyDown
-        //{
-        //    get { return GetValue(GradeKeyDownProperty); }
-        //    set { SetValue(GradeKeyDownProperty, value); }
-        //}
-
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             base.OnApplyTemplate(e);
@@ -83,7 +72,8 @@ namespace StudBookApp.Views.CustomControls
             // if we had a control template before, we need to unsubscribe any event listeners
             if (_gradeTextBox is not null)
             {
-                _gradeTextBox.KeyDown -= OnGradeKeyDown;
+                _gradeTextBox.KeyDown -= OnGrade_KeyDown;
+                _gradeTextBox.PastingFromClipboard -= OnGrateTextBox_PastingFromClipboard;
             }
 
             // try to find the control with the given name
@@ -92,11 +82,12 @@ namespace StudBookApp.Views.CustomControls
             // listen to pointer-released events on the stars presenter.
             if (_gradeTextBox != null)
             {
-                _gradeTextBox.KeyDown += OnGradeKeyDown;
+                _gradeTextBox.KeyDown += OnGrade_KeyDown;
+                _gradeTextBox.PastingFromClipboard += OnGrateTextBox_PastingFromClipboard;
             }
         }
 
-        private void OnGradeKeyDown(object sender, KeyEventArgs e)
+        private void OnGrade_KeyDown(object? sender, KeyEventArgs e)
         {
             string key = e.Key.ToString();
 
@@ -106,6 +97,14 @@ namespace StudBookApp.Views.CustomControls
             {
                 e.Handled = true;
             }
+        }
+
+        private void OnGrateTextBox_PastingFromClipboard(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            string? text = TopLevel.GetTopLevel(this)?.Clipboard?.GetTextAsync().Result;
+            if (!int.TryParse(_gradeTextBox?.Text + text, out int grade) || grade > 100 || grade < 0
+                || (_gradeTextBox?.Text?.Length == 0 && grade == 0))
+                e.Handled = true;
         }
 
     }

@@ -83,7 +83,7 @@ public class MainViewModel : ViewModelBase
 
         SubjectCredits = new BindingList<MyString>();
         for (int i = 0; i < Subjects.Length; i++)
-            SubjectCredits.Add(new MyString() { Value = ""});
+            SubjectCredits.Add(new MyString() { Value = "" });
 
         SubjectGrades = new BindingList<MyString>();
         for (int i = 0; i < Subjects.Length; i++)
@@ -118,7 +118,10 @@ public class MainViewModel : ViewModelBase
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            Subjects[i].Grade = int.Parse(string.IsNullOrEmpty(SubjectGrades[i].Value) ? "0" : SubjectGrades[i].Value);
+            if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade < 100)
+            {
+                Subjects[i].Grade = grade;
+            }
         }
         CalculateGrade();
     }
