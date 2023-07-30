@@ -2,7 +2,7 @@
 
 namespace StudBookApp.Model
 {
-    internal class Specialty
+    public class Specialty
     {
         public int Number { get; set; }
         public LearningProgram[]? LearningPrograms { get; set; }

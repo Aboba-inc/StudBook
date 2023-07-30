@@ -7,6 +7,10 @@ using StudBookApp.ViewModels.Base;
 using System;
 using System.Reactive;
 using StudBookApp.Themes.StyleHelpers;
+using StudBookApp.Model;
+using System.Linq;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace StudBookApp.ViewModels;
 
@@ -14,6 +18,43 @@ public class MainViewModel : ViewModelBase
 {
     #region Properties
 
+    public string Grade { get; set; } = "0";
+
+    public Subject[] Subjects { get; set; }
+
+    //private ObservableCollection<string> _subjectNames = new(new string[8]);
+    //public ObservableCollection<string> SubjectNames
+    //{
+    //    get => _subjectNames;
+    //    set
+    //    {
+    //        _subjectNames = value;
+    //        for (int i = 0; i < Subjects.Length; i++)
+    //        {
+    //            Subjects[i].Name = SubjectNames[i];
+    //        }
+    //    }
+    //}
+
+    //private ObservableCollection<string> _subjectCredits = new (new string[8]);
+    //public ObservableCollection<string> SubjectCredits
+    //{
+    //    get => _subjectCredits;
+    //    set
+    //    {
+    //        _subjectCredits = value;
+    //        for (int i = 0; i < Subjects.Length; i++)
+    //        {
+    //            Subjects[i].Credits = double.Parse(SubjectCredits[i]);
+    //        }
+    //    }
+    //}
+
+    public BindingList<MyString> SubjectNames { get; set; }
+
+    public BindingList<MyString> SubjectCredits { get; set; }
+
+    public BindingList<MyString> SubjectGrades { get; set; }
 
 
     #endregion
@@ -44,8 +85,91 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel(StyleManager? styles)
     {
-        CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
+        Subjects = new Subject[8];
+        for (int i = 0; i < Subjects.Length; i++)
+            Subjects[i] = new Subject();
 
+        SubjectNames = new BindingList<MyString>();
+        for (int i = 0; i < Subjects.Length; i++)
+            SubjectNames.Add(new MyString() { Value = "" });
+
+        SubjectCredits = new BindingList<MyString>();
+        for (int i = 0; i < Subjects.Length; i++)
+            SubjectCredits.Add(new MyString() { Value = ""});
+
+        SubjectGrades = new BindingList<MyString>();
+        for (int i = 0; i < Subjects.Length; i++)
+            SubjectGrades.Add(new MyString() { Value = "" });
+
+        SubjectNames.ListChanged += SubjectNames_ListChanged;
+        SubjectCredits.ListChanged += SubjectCredits_ListChanged;
+        SubjectGrades.ListChanged += SubjectGrades_ListChanged;
+
+        CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
         ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
+    }
+
+    private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)
+    {
+        for (int i = 0; i < Subjects.Length; i++)
+        {
+            Subjects[i].Credits = double.Parse(string.IsNullOrEmpty(SubjectCredits[i].Value) ? "0" : SubjectCredits[i].Value.Replace('.', ','));
+        }
+        CalculateGrade();
+    }
+
+    private void SubjectGrades_ListChanged(object? sender, ListChangedEventArgs e)
+    {
+        for (int i = 0; i < Subjects.Length; i++)
+        {
+            Subjects[i].Grade = int.Parse(string.IsNullOrEmpty(SubjectGrades[i].Value) ? "0" : SubjectGrades[i].Value);
+        }
+        CalculateGrade();
+    }
+
+    private void SubjectNames_ListChanged(object? sender, ListChangedEventArgs e)
+    {
+        for (int i = 0; i < Subjects.Length; i++)
+        {
+            Subjects[i].Name = SubjectNames[i].Value;
+        }
+        CalculateGrade();
+    }
+
+    private void CalculateGrade()
+    {
+        double grade = 0;
+        double creditsSum = Subjects.Where(s => s.Credits > 0 && s.Grade > 0).Sum(s => s.Credits);
+        foreach (var subject in Subjects.Where(s => s.Credits > 0 && s.Grade > 0))
+        {
+            grade += (subject.Credits / creditsSum) * subject.Grade;
+        }
+        Grade = Math.Round(grade, 2).ToString();
+        OnPropertyChanged("Grade");
+    }
+}
+
+public class MyString : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private string _value;
+    public string Value
+    {
+        get { return _value; }
+        set
+        {
+            _value = value;
+            OnPropertyChanged("Value");
+        }
+    }
+
+    void OnPropertyChanged(string propertyName)
+    {
+        var handler = PropertyChanged;
+        if (handler != null)
+        {
+            handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

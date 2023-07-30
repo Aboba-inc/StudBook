@@ -31,7 +31,7 @@
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundSubject}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextSubject}"/>
+								 Text="{TemplateBinding TextSubject, Mode=TwoWay}"/>
 
 						<TextBox Grid.Row="1"
 								 Grid.Column="0"
@@ -43,7 +43,7 @@
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundCredit}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextCredit}"/>
+								 Text="{TemplateBinding TextCredit, Mode=TwoWay}"/>
 
 						<TextBox Grid.Row="1"
 								 Grid.Column="1"
@@ -55,7 +55,7 @@
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundGrade}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextGrade}"/>
+								 Text="{TemplateBinding TextGrade, Mode=TwoWay}"/>
 					</Grid>
 				</Border>
 
