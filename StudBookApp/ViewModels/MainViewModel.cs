@@ -11,6 +11,7 @@ using StudBookApp.Model;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Avalonia.Input;
 
 namespace StudBookApp.ViewModels;
 
@@ -21,34 +22,6 @@ public class MainViewModel : ViewModelBase
     public string Grade { get; set; } = "0";
 
     public Subject[] Subjects { get; set; }
-
-    //private ObservableCollection<string> _subjectNames = new(new string[8]);
-    //public ObservableCollection<string> SubjectNames
-    //{
-    //    get => _subjectNames;
-    //    set
-    //    {
-    //        _subjectNames = value;
-    //        for (int i = 0; i < Subjects.Length; i++)
-    //        {
-    //            Subjects[i].Name = SubjectNames[i];
-    //        }
-    //    }
-    //}
-
-    //private ObservableCollection<string> _subjectCredits = new (new string[8]);
-    //public ObservableCollection<string> SubjectCredits
-    //{
-    //    get => _subjectCredits;
-    //    set
-    //    {
-    //        _subjectCredits = value;
-    //        for (int i = 0; i < Subjects.Length; i++)
-    //        {
-    //            Subjects[i].Credits = double.Parse(SubjectCredits[i]);
-    //        }
-    //    }
-    //}
 
     public BindingList<MyString> SubjectNames { get; set; }
 
@@ -61,6 +34,7 @@ public class MainViewModel : ViewModelBase
 
     #region Commands
 
+    #region Close
     public ReactiveCommand<Unit, Unit> CloseApplicationCommand { get; }
     void CloseApplication()
     {
@@ -69,7 +43,9 @@ public class MainViewModel : ViewModelBase
             lifetime.Shutdown();
         }
     }
+    #endregion
 
+    #region Change theme
     public ReactiveCommand<Unit, Unit> ChangeThemeCommand { get; }
     void ChangeTheme(StyleManager? styles)
     {
@@ -80,6 +56,18 @@ public class MainViewModel : ViewModelBase
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         });
     }
+    #endregion
+
+    #region Grade key down event handler
+    public ReactiveCommand<KeyEventArgs, Unit> GradeKeyDownCommand { get; }
+    Unit GradeKeyDown(KeyEventArgs e)
+    {
+        if (!char.IsNumber((char)e.Key))
+            e.Handled = true;
+
+        return new Unit();
+    }
+    #endregion
 
     #endregion
 
@@ -107,6 +95,14 @@ public class MainViewModel : ViewModelBase
 
         CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
         ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
+        GradeKeyDownCommand = ReactiveCommand.Create<KeyEventArgs, Unit>(GradeKeyDown);
+    }
+
+    public void GradeKeyDown(object sender, KeyEventArgs e)
+    {
+        if (!char.IsNumber((char)e.Key))
+            e.Handled = true;
+
     }
 
     private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)

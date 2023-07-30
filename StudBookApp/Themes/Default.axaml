@@ -1,19 +1,14 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp">
+		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
+		xmlns:controls="clr-namespace:StudBookApp.Views.CustomControls">
 	<Design.PreviewWith>
         <Border Padding="20">
 			
              <!--Add Controls for Previewer Here-->
 
-			<titlebars:WindowsTitleBar Classes="titlebar" IsSeamless="True" />
+			<!--<controls:SubjectControl />-->
 			
-			<!--<ComboBox Grid.Row="1" Grid.Column="1"
-					  HorizontalAlignment="Stretch"
-					  VerticalAlignment="Center"
-					  Margin="0, 0, 8, 0">
-
-			</ComboBox>-->
         </Border>
     </Design.PreviewWith>
 
@@ -37,6 +32,13 @@
 						 Color="#C0BAB6" />
 		<SolidColorBrush x:Key="ComboBoxBackgroundPressed"
 						 Color="#7B7774" />
+		
+		<SolidColorBrush x:Key="SubjectTextBoxBackgrond"
+						 Color="#F2E9E4"/>
+		<SolidColorBrush x:Key="CreditsTextBoxBackgrond"
+						 Color="#D3D3D3"/>
+		<SolidColorBrush x:Key="GradeTextBoxBackgrond"
+						 Color="#D3D3D3"/>
 		
 	</Styles.Resources>
 
@@ -80,7 +82,13 @@
 			<Setter Property="Fill" Value="{StaticResource TitleBarForeground}"/>
 		</Style>
 	</Style>
-	
-	
+
+	<Style Selector="Grid.subjectFields">	
+		<Style Selector="^ controls|SubjectField">
+			<Setter Property="BackgroundSubject" Value="{StaticResource SubjectTextBoxBackgrond}"/>
+			<Setter Property="BackgroundCredits" Value="{StaticResource CreditsTextBoxBackgrond}"/>
+			<Setter Property="BackgroundGrade" Value="{StaticResource GradeTextBoxBackgrond}"/>
+		</Style>
+	</Style>
 	
 </Styles>

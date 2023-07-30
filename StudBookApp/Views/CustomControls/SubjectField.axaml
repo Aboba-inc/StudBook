@@ -18,7 +18,7 @@
 
 				<Border Padding="5">
 					<Grid RowDefinitions="1.2*, *"
-		  ColumnDefinitions="*, *">
+						  ColumnDefinitions="*, *">
 
 						<TextBox Grid.Row="0"
 								 Grid.Column="0"
@@ -35,15 +35,15 @@
 
 						<TextBox Grid.Row="1"
 								 Grid.Column="0"
-								 Name="CreditTextBox"
+								 Name="CreditsTextBox"
 								 Watermark="Кредит"
 								 TextAlignment="Center"
 								 VerticalAlignment="Center"
 								 Margin="0, 2, 2, 0"
 								 CornerRadius="9"
-								 Background="{TemplateBinding BackgroundCredit}"
+								 Background="{TemplateBinding BackgroundCredits}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextCredit, Mode=TwoWay}"/>
+								 Text="{TemplateBinding TextCredits, Mode=TwoWay}"/>
 
 						<TextBox Grid.Row="1"
 								 Grid.Column="1"
@@ -55,15 +55,14 @@
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundGrade}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextGrade, Mode=TwoWay}"/>
+								 Text="{TemplateBinding TextGrade, Mode=TwoWay}">
+							
+							
+						</TextBox>
 					</Grid>
 				</Border>
 
 			</ControlTemplate>
 		</Setter>
-
-		<Setter Property="BackgroundSubject" Value="#F2E9E4"/>
-		<Setter Property="BackgroundCredit" Value="#D3D3D3"/>
-		<Setter Property="BackgroundGrade" Value="#D3D3D3"/>
 	</Style>
 </Styles>

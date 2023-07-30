@@ -84,62 +84,63 @@
 			<!-- Main Fields -->
 			<Grid Grid.Row="1"
 				  RowDefinitions="0.1*, *, *, *, *, 0.6*"
-				  ColumnDefinitions="*, 5*, 5*, *">
+				  ColumnDefinitions="*, 5*, 5*, *"
+				  Classes="subjectFields">
 
-				<controls:SubjectField Name="Subject1" 
+				<controls:SubjectField Name="Subject1"
 									   Grid.Row="1"
 									   Grid.Column="1"
 									   TextSubject="{Binding SubjectNames[0].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[0].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[0].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[0].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject2" 
 									   Grid.Row="1"
 									   Grid.Column="2"
 									    TextSubject="{Binding SubjectNames[2].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[2].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[2].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[2].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject3" 
 									   Grid.Row="2"
 									   Grid.Column="1"
 									   TextSubject="{Binding SubjectNames[4].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[4].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[4].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[4].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject4" 
 									   Grid.Row="2"
 									   Grid.Column="2"
 									   TextSubject="{Binding SubjectNames[6].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[6].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[6].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[6].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject5" 
 									   Grid.Row="3"
 									   Grid.Column="1"
 									   TextSubject="{Binding SubjectNames[1].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[1].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[1].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[1].Value, Mode=TwoWay}"/>
 				
 				<controls:SubjectField Name="Subject6" 
 									   Grid.Row="3"
 									   Grid.Column="2"
 									   TextSubject="{Binding SubjectNames[3].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[3].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[3].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[3].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject7" 
 									   Grid.Row="4"
 									   Grid.Column="1"
 									   TextSubject="{Binding SubjectNames[5].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[5].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[5].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[5].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject8" 
 									   Grid.Row="4"
 									   Grid.Column="2"
 									   TextSubject="{Binding SubjectNames[7].Value, Mode=TwoWay}"
-									   TextCredit="{Binding SubjectCredits[7].Value, Mode=TwoWay }"
+									   TextCredits="{Binding SubjectCredits[7].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[7].Value, Mode=TwoWay}"/>
 				
 				<TextBlock Name="StudentGrade"
