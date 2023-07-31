@@ -109,7 +109,10 @@ public class MainViewModel : ViewModelBase
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            Subjects[i].Credits = double.Parse(string.IsNullOrEmpty(SubjectCredits[i].Value) ? "0" : SubjectCredits[i].Value.Replace('.', ','));
+            if (double.TryParse(SubjectCredits[i].Value.Replace('.', ','), out double credit) && credit >= 0 && credit <= 10)
+            {
+                Subjects[i].Credits = credit;
+            }
         }
         CalculateGrade();
     }
@@ -118,7 +121,7 @@ public class MainViewModel : ViewModelBase
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade < 100)
+            if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade <= 100)
             {
                 Subjects[i].Grade = grade;
             }
