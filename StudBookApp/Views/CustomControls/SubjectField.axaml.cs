@@ -72,8 +72,9 @@ namespace StudBookApp.Views.CustomControls
             // if we had a control template before, we need to unsubscribe any event listeners
             if (_gradeTextBox is not null)
             {
-                _gradeTextBox.KeyDown -= OnGrade_KeyDown;
+                _gradeTextBox.KeyDown -= OnGradeTextBox_KeyDown;
                 _gradeTextBox.PastingFromClipboard -= OnGrateTextBox_PastingFromClipboard;
+                _gradeTextBox.TextChanged -= OnGradeTextBox_TextChanged;
             }
 
             // try to find the control with the given name
@@ -82,18 +83,34 @@ namespace StudBookApp.Views.CustomControls
             // listen to pointer-released events on the stars presenter.
             if (_gradeTextBox != null)
             {
-                _gradeTextBox.KeyDown += OnGrade_KeyDown;
+                _gradeTextBox.KeyDown += OnGradeTextBox_KeyDown;
                 _gradeTextBox.PastingFromClipboard += OnGrateTextBox_PastingFromClipboard;
+                _gradeTextBox.TextChanged += OnGradeTextBox_TextChanged;
             }
         }
 
-        private void OnGrade_KeyDown(object? sender, KeyEventArgs e)
+        private void OnGradeTextBox_TextChanged(object? sender, TextChangedEventArgs e)
+        {
+            if (_gradeTextBox is not null && int.TryParse(_gradeTextBox.Text, out int grade) && grade == 0)
+            {
+                _gradeTextBox.Text = string.Empty;
+            }
+        }
+
+        private void OnGradeTextBox_KeyDown(object? sender, KeyEventArgs e)
         {
             string key = e.Key.ToString();
 
-            if ((key.Length != 2 || key[0] != 'D' || !Char.IsDigit(key[1]))
-                || (int.Parse(_gradeTextBox?.Text + key[1].ToString()) > 100)
-                || (_gradeTextBox?.Text is null || (_gradeTextBox?.Text?.Length == 0 && int.Parse(key[1].ToString()) == 0)))
+            if (e.KeyModifiers == KeyModifiers.Shift
+                || _gradeTextBox is null
+                || _gradeTextBox.Text is null
+                || key.Length != 2
+                || key[0] != 'D'
+                || !Char.IsDigit(key[1])
+                || (_gradeTextBox.SelectionStart == _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), key[1].ToString()), out int grade1) && grade1 > 100)
+                || (_gradeTextBox!.SelectionStart != _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Remove(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), Math.Abs(_gradeTextBox.SelectionEnd - _gradeTextBox.SelectionStart)).Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), key[1].ToString()), out int grade2) && grade2 > 100)
+                || (Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd) == 0 && key[1] == '0')
+                || (string.IsNullOrEmpty(_gradeTextBox.Text) && int.Parse(key[1].ToString()) == 0))
             {
                 e.Handled = true;
             }
