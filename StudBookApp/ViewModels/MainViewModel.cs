@@ -29,7 +29,6 @@ public class MainViewModel : ViewModelBase
 
     public BindingList<MyString> SubjectGrades { get; set; }
 
-
     #endregion
 
     #region Commands
@@ -55,17 +54,6 @@ public class MainViewModel : ViewModelBase
             Theme.New => Theme.Default,
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         });
-    }
-    #endregion
-
-    #region Grade key down event handler
-    public ReactiveCommand<KeyEventArgs, Unit> GradeKeyDownCommand { get; }
-    Unit GradeKeyDown(KeyEventArgs e)
-    {
-        if (!char.IsNumber((char)e.Key))
-            e.Handled = true;
-
-        return new Unit();
     }
     #endregion
 
@@ -95,21 +83,13 @@ public class MainViewModel : ViewModelBase
 
         CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
         ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
-        GradeKeyDownCommand = ReactiveCommand.Create<KeyEventArgs, Unit>(GradeKeyDown);
-    }
-
-    public void GradeKeyDown(object sender, KeyEventArgs e)
-    {
-        if (!char.IsNumber((char)e.Key))
-            e.Handled = true;
-
     }
 
     private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            if (double.TryParse(SubjectCredits[i].Value.Replace('.', ','), out double credit) && credit >= 0 && credit <= 10)
+            if (double.TryParse(SubjectCredits[i].Value?.Replace('.', ','), out double credit) && credit >= 0 && credit <= 10)
             {
                 Subjects[i].Credits = credit;
             }
@@ -133,7 +113,7 @@ public class MainViewModel : ViewModelBase
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            Subjects[i].Name = SubjectNames[i].Value;
+            Subjects[i].Name = SubjectNames[i].Value ?? "";
         }
         CalculateGrade();
     }
@@ -153,10 +133,10 @@ public class MainViewModel : ViewModelBase
 
 public class MyString : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-    private string _value;
-    public string Value
+    private string? _value;
+    public string? Value
     {
         get { return _value; }
         set

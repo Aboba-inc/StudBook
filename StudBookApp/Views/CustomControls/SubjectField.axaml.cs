@@ -11,7 +11,6 @@ namespace StudBookApp.Views.CustomControls
     public class SubjectField : TemplatedControl
     {
         TextBox? _gradeTextBox;
-        TextBox? _creditsTextBox;
 
         public static readonly StyledProperty<IBrush> BackgroundSubjectProperty =
         AvaloniaProperty.Register<SubjectField, IBrush>(nameof(BackgroundSubject), Brushes.White);
@@ -79,13 +78,6 @@ namespace StudBookApp.Views.CustomControls
                 _gradeTextBox.TextChanged -= GradeTextBox_TextChanged;
             }
 
-            if (_creditsTextBox is not null)
-            {
-                _creditsTextBox.KeyDown -= CreditsTextBox_KeyDown;
-                _creditsTextBox.PastingFromClipboard -= CreditsTextBox_PastingFromClipboard;
-                _creditsTextBox.TextChanged -= CreditsTextBox_TextChanged;
-            }
-
             // try to find the control with the given name
             _gradeTextBox = e.NameScope.Find("GradeTextBox") as TextBox;
 
@@ -96,28 +88,6 @@ namespace StudBookApp.Views.CustomControls
                 _gradeTextBox.PastingFromClipboard += GrateTextBox_PastingFromClipboard;
                 _gradeTextBox.TextChanged += GradeTextBox_TextChanged;
             }
-
-            if (_creditsTextBox is not null)
-            {
-                _creditsTextBox.KeyDown += CreditsTextBox_KeyDown;
-                _creditsTextBox.PastingFromClipboard += CreditsTextBox_PastingFromClipboard;
-                _creditsTextBox.TextChanged += CreditsTextBox_TextChanged;
-            }
-        }
-
-        private void CreditsTextBox_TextChanged(object? sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void CreditsTextBox_PastingFromClipboard(object? sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void CreditsTextBox_KeyDown(object? sender, KeyEventArgs e)
-        {
-            
         }
 
         private void GradeTextBox_TextChanged(object? sender, TextChangedEventArgs e)
