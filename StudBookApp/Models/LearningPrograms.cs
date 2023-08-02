@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StudBookApp.Model
+namespace StudBookApp.Models
 {
     public class LearningProgram
     {

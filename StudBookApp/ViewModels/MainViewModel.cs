@@ -7,7 +7,7 @@ using StudBookApp.ViewModels.Base;
 using System;
 using System.Reactive;
 using StudBookApp.Themes.StyleHelpers;
-using StudBookApp.Model;
+using StudBookApp.Models;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

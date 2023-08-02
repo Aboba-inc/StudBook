@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StudBookApp.Model
+namespace StudBookApp.Models
 {
     public class Specialty
     {
