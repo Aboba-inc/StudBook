@@ -6,6 +6,7 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using System;
 using System.Globalization;
+using System.Security.Cryptography;
 
 namespace StudBookApp.Views.CustomControls
 {
@@ -14,6 +15,15 @@ namespace StudBookApp.Views.CustomControls
         TextBox? _gradeTextBox;
         TextBox? _creditsTextBox;
         string? _creditValue;
+
+        public static readonly StyledProperty<Thickness> BorderPaddingProperty =
+        AvaloniaProperty.Register<SubjectField, Thickness>(nameof(BackgroundSubject));
+
+        public Thickness BorderPadding
+        {
+            get { return GetValue(BorderPaddingProperty); }
+            set { SetValue(BorderPaddingProperty, value); }
+        }
 
         public static readonly StyledProperty<IBrush> BackgroundSubjectProperty =
         AvaloniaProperty.Register<SubjectField, IBrush>(nameof(BackgroundSubject), Brushes.White);

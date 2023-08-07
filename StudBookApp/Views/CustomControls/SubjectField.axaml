@@ -16,7 +16,7 @@
 		<Setter Property="Template">
 			<ControlTemplate>
 
-				<Border Padding="5">
+				<Border Padding="{TemplateBinding BorderPadding}">
 					<Grid RowDefinitions="1.2*, *"
 						  ColumnDefinitions="*, *">
 
@@ -27,7 +27,7 @@
 								 Watermark="Предмет"
 								 TextAlignment="Center"
 								 VerticalAlignment="Center"
-								 Margin="0, 0, 0, 2"
+								 Margin="0, 2"
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundSubject}"
 								 Foreground="{TemplateBinding Foreground}"
@@ -39,7 +39,7 @@
 								 Watermark="Кредит"
 								 TextAlignment="Center"
 								 VerticalAlignment="Center"
-								 Margin="0, 2, 2, 0"
+								 Margin="0, 2, 2, 2"
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundCredits}"
 								 Foreground="{TemplateBinding Foreground}"
@@ -51,7 +51,7 @@
 								 Watermark="Бал"
 								 TextAlignment="Center"
 								 VerticalAlignment="Center"
-								 Margin="2, 2, 0, 0"
+								 Margin="2, 2, 0, 2"
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundGrade}"
 								 Foreground="{TemplateBinding Foreground}"
