@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StudBookApp.Models
 {
     public class Specialty
     {
         public int Number { get; set; }
-        public LearningProgram[]? LearningPrograms { get; set; }
+        public List<LearningProgram>? LearningPrograms { get; set; }
 
-        public Specialty(int number)
+        public Specialty(int number, List<LearningProgram>? learningPrograms = null)
         {
             if (number < 0)
             {
@@ -15,11 +16,8 @@ namespace StudBookApp.Models
             }
 
             Number = number;
-        }
-
-        public Specialty(int number, LearningProgram[] learningPrograms) : this(number)
-        {
-            LearningPrograms = learningPrograms;
+            LearningPrograms = learningPrograms ?? new List<LearningProgram>();
         }
     }
+}
 }

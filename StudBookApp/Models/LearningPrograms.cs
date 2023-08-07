@@ -5,16 +5,12 @@ namespace StudBookApp.Models
     public class LearningProgram
     {
         public string Name { get; set; }
-        public List<Subject>? Subjects { get; set; }
+        public List<Subject> Subjects { get; set; }
 
-        public LearningProgram(string name)
+        public LearningProgram(string name, List<Subject>? subjects = null)
         {
             Name = name;
-        }
-
-        public LearningProgram(string name, List<Subject> subjects) : this(name)
-        {
-            Subjects = subjects;
+            Subjects = subjects ?? new List<Subject>();
         }
     }
 }

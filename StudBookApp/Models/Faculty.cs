@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StudBookApp.Models
 {
     public class Faculty
     {
         public int Number { get; }
-        public Cathedra[]? Cathedras;
- 
-        public Faculty(int number)
+        public List<Cathedra> Cathedras { get; set; }
+
+        public Faculty(int number, List<Cathedra>? cathedras = null)
         {
             if (number < 1 || number > 8)
             {
@@ -15,11 +16,7 @@ namespace StudBookApp.Models
             }
 
             Number = number;
-        }
-
-        public Faculty(int number, Cathedra[] cathedras) : this(number)
-        {
-            Cathedras = cathedras;
+            Cathedras = cathedras ?? new List<Cathedra>();
         }
     }
 }
