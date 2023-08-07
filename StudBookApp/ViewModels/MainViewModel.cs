@@ -89,7 +89,7 @@ public class MainViewModel : ViewModelBase
     {
         for (int i = 0; i < Subjects.Length; i++)
         {
-            if (double.TryParse(SubjectCredits[i].Value?.Replace('.', ','), out double credit) && credit >= 0 && credit <= 10)
+            if (double.TryParse(SubjectCredits[i].Value?.Replace('.', ','), out double credit) && credit >= 0 && credit <= 12)
             {
                 Subjects[i].Credits = credit;
             }
