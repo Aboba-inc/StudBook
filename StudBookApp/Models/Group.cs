@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace StudBookApp.Models
 {
-    public class LearningProgram
+    public class Group
     {
         public string Name { get; set; }
         public List<Subject> Subjects { get; set; }
 
-        public LearningProgram(string name, List<Subject>? subjects = null)
+        public Group(string name = "", List<Subject>? subjects = null)
         {
             Name = name;
             Subjects = subjects ?? new List<Subject>();
