@@ -93,6 +93,10 @@ public class MainViewModel : ViewModelBase
             {
                 Subjects[i].Credits = credit;
             }
+            else if (string.IsNullOrEmpty(SubjectCredits[i].Value))
+            {
+                Subjects[i].Credits = 0;
+            }
         }
         CalculateGrade();
     }
@@ -104,6 +108,10 @@ public class MainViewModel : ViewModelBase
             if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade <= 100)
             {
                 Subjects[i].Grade = grade;
+            }
+            else if (string.IsNullOrEmpty(SubjectGrades[i].Value))
+            {
+                Subjects[i].Grade = 0;
             }
         }
         CalculateGrade();

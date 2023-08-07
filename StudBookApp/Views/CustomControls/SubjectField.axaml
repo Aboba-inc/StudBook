@@ -55,10 +55,21 @@
 								 CornerRadius="9"
 								 Background="{TemplateBinding BackgroundGrade}"
 								 Foreground="{TemplateBinding Foreground}"
-								 Text="{TemplateBinding TextGrade, Mode=TwoWay}">
-							
-							
-						</TextBox>
+								 Text="{TemplateBinding TextGrade, Mode=TwoWay}"/>
+
+						<!--<NumericUpDown Grid.Row="1"
+									   Grid.Column="1"
+									   Watermark="Бал"
+									   ShowButtonSpinner="False"
+									   HorizontalContentAlignment="Center"
+									   VerticalContentAlignment="Center"
+									   Maximum="100"
+									   Minimum="0"
+									   Margin="2, 2, 0, 0"
+									   CornerRadius="9"
+									   Background="{TemplateBinding BackgroundGrade}"
+									   Foreground="{TemplateBinding Foreground}"/>-->
+
 					</Grid>
 				</Border>
 

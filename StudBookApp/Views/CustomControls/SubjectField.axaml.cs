@@ -5,12 +5,15 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using System;
+using System.Globalization;
 
 namespace StudBookApp.Views.CustomControls
 {
     public class SubjectField : TemplatedControl
     {
         TextBox? _gradeTextBox;
+        TextBox? _creditsTextBox;
+        string? _creditValue;
 
         public static readonly StyledProperty<IBrush> BackgroundSubjectProperty =
         AvaloniaProperty.Register<SubjectField, IBrush>(nameof(BackgroundSubject), Brushes.White);
@@ -78,8 +81,13 @@ namespace StudBookApp.Views.CustomControls
                 _gradeTextBox.TextChanged -= GradeTextBox_TextChanged;
             }
 
+            if (_creditsTextBox is not null)
+            {
+                _creditsTextBox.TextChanged -= CreditsTextBox_LostFocus;
+            }
             // try to find the control with the given name
             _gradeTextBox = e.NameScope.Find("GradeTextBox") as TextBox;
+            _creditsTextBox = e.NameScope.Find("CreditsTextBox") as TextBox;
 
             // listen to pointer-released events on the stars presenter.
             if (_gradeTextBox is not null)
@@ -87,6 +95,27 @@ namespace StudBookApp.Views.CustomControls
                 _gradeTextBox.KeyDown += GradeTextBox_KeyDown;
                 _gradeTextBox.PastingFromClipboard += GrateTextBox_PastingFromClipboard;
                 _gradeTextBox.TextChanged += GradeTextBox_TextChanged;
+            }
+
+            if (_creditsTextBox is not null)
+            {
+                _creditsTextBox.LostFocus += CreditsTextBox_LostFocus;
+            }
+        }
+
+        private void CreditsTextBox_LostFocus(object? sender, RoutedEventArgs e)
+        {
+            if (_creditsTextBox is not null)
+            {
+                if (string.IsNullOrEmpty(_creditsTextBox.Text)
+                    || (double.TryParse(_creditsTextBox.Text, CultureInfo.InvariantCulture, out double credit) && credit >= 0 && credit <= 10))
+                {
+                    _creditValue = _creditsTextBox.Text;
+                }
+                else
+                {
+                    _creditsTextBox.Text = _creditValue;
+                }
             }
         }
 
