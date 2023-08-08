@@ -12,22 +12,98 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia.Input;
+using StudBookApp.Services;
+using Nito.AsyncEx;
+using System.Threading.Tasks;
+using Avalonia.Controls;
+using Avalonia.Media;
+using DynamicData;
+using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StudBookApp.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
+    #region Private Properties
+
+    private GroupService _groupService;
+    private List<Group> _allGroups;
+    private Subject[] Subjects { get; set; }
+
+    #endregion
+
     #region Properties
 
     public string Grade { get; set; } = "0";
-
-    public Subject[] Subjects { get; set; }
 
     public BindingList<MyString> SubjectNames { get; set; }
 
     public BindingList<MyString> SubjectCredits { get; set; }
 
     public BindingList<MyString> SubjectGrades { get; set; }
+
+    private INotifyTaskCompletion _initializationNotifier;
+    public INotifyTaskCompletion InitializationNotifier
+    {
+        get => _initializationNotifier;
+        private set
+        {
+            _initializationNotifier = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private ObservableCollection<Group> _groups;
+    public ObservableCollection<Group> Groups
+    {
+        get => _groups;
+        set
+        {
+            if (value != null)
+            {
+                _groups = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private int _groupSelectedIndex;
+    public int GroupSelectedIndex
+    {
+        get => _groupSelectedIndex;
+        set
+        {
+            _groupSelectedIndex = value;
+            ClearFields(SubjectNames, SubjectCredits, SubjectGrades);
+            SetSubjects();
+            OnPropertyChanged();
+        }
+    }
+
+    private int _facultySelectedIndex;
+    public int FacultySelectedIndex
+    {
+        get => _facultySelectedIndex;
+        set
+        {
+            _facultySelectedIndex = value;
+            FilterGroups();
+            OnPropertyChanged();
+        }
+    }
+
+    private int _courseSelectedIndex;
+    public int CourseSelectedIndex
+    {
+        get => _courseSelectedIndex;
+        set
+        {
+            _courseSelectedIndex = value;
+            FilterGroups();
+            OnPropertyChanged();
+        }
+    }
 
     #endregion
 
@@ -61,7 +137,7 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel(StyleManager? styles)
     {
-        Subjects = new Subject[8];
+        Subjects = new Subject[9];
         for (int i = 0; i < Subjects.Length; i++)
             Subjects[i] = new Subject();
 
@@ -77,12 +153,83 @@ public class MainViewModel : ViewModelBase
         for (int i = 0; i < Subjects.Length; i++)
             SubjectGrades.Add(new MyString() { Value = "" });
 
+        InitializationNotifier = NotifyTaskCompletion.Create(InitializeAsync());
+
         SubjectNames.ListChanged += SubjectNames_ListChanged;
         SubjectCredits.ListChanged += SubjectCredits_ListChanged;
         SubjectGrades.ListChanged += SubjectGrades_ListChanged;
 
         CloseApplicationCommand = ReactiveCommand.Create(CloseApplication);
         ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
+    }
+
+    private void ClearFields(params BindingList<MyString>[] list)
+    {
+        foreach (var item in list)
+        {
+            for (int i = 0; i < Subjects.Length; i++)
+                item[i].Value = "";
+        }
+    }
+
+    private async Task InitializeAsync()
+    {
+        _groupService = new GroupService();
+        await LoadData();
+    }
+
+    public async Task LoadData()
+    {
+        var data = await _groupService.GetGroups();
+        _allGroups = new List<Group>(data);
+        Groups = new ObservableCollection<Group>() { new Group() };
+        Groups.AddRange(_allGroups);
+        //Groups = new ObservableCollection<Group>(data);
+    }
+
+    private void SetSubjects()
+    {
+        if (GroupSelectedIndex >= 0)
+        {
+            for (int i = 0; i < Groups[GroupSelectedIndex].Subjects.Count; i++)
+            {
+                SubjectNames[i].Value = Groups[GroupSelectedIndex].Subjects[i].Name;
+                SubjectCredits[i].Value = Groups[GroupSelectedIndex].Subjects[i].Credits.ToString();
+            }
+        }
+    }
+
+    private void FilterGroups()
+    {
+        if(_allGroups is not null)
+        {
+            Groups = new ObservableCollection<Group>() { new Group() };
+            if (FacultySelectedIndex > 0 && CourseSelectedIndex > 0)
+            {
+                Groups.AddRange(
+                    _allGroups
+                    .Where(gr => gr.Faculty == FacultySelectedIndex && gr.Course == CourseSelectedIndex)
+                    );
+            }
+            else if (FacultySelectedIndex > 0)
+            {
+                Groups.AddRange(
+                    _allGroups
+                    .Where(gr => gr.Faculty == FacultySelectedIndex)
+                    );
+            }
+            else if (CourseSelectedIndex > 0)
+            {
+                Groups.AddRange(
+                    _allGroups
+                    .Where(gr => gr.Course == CourseSelectedIndex)
+                    );
+            }
+            else
+            {
+                Groups.AddRange(_allGroups);
+            }
+        }
     }
 
     private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)

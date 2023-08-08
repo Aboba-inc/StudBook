@@ -43,109 +43,157 @@
 								   Classes="titlebar"
 								   IsSeamless="True"/>
 
-		<Grid RowDefinitions="*, 3.4*"
+		<Grid RowDefinitions="*, 6*"
 			  Classes ="main">
 
 			<!-- Combo boxes -->
 			<Grid Grid.Row="0"
-				  ColumnDefinitions="2*, 4*, 4*, 4*, 2*"
-				  RowDefinitions="0.5*, 1.5*, 0.5*">
+				  ColumnDefinitions="2*, 3*, 3*, 3*, 2*"
+				  RowDefinitions="1.2*, 1.5*, 0.5*">
 
-				<ComboBox Grid.Row="1" Grid.Column="1"
-						  HorizontalAlignment="Stretch"
-						  
-						  VerticalAlignment="Center"
-						  Margin="0, 0, 8, 0"/>
-
-				<ComboBox Grid.Row="1" Grid.Column="2"
-						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Center"
-						  Margin="4, 0, 4, 0"/>
-
-				<ComboBox Grid.Row="1" Grid.Column="3"
-						  HorizontalAlignment="Stretch"
-						  VerticalAlignment="Center"
-						  Margin="8, 0, 0, 0"/>
-
-
-				<ComboBox Grid.Row="2" Grid.Column="1"
-						  Grid.ColumnSpan="2"
+				<ComboBox Grid.Row="1"
+						  Grid.Column="1"
+						  Name="FacultiesComboBox"
 						  VerticalAlignment="Center"
 						  HorizontalAlignment="Stretch"
-						  Margin="0, 0, 80, 20"/>
+						  VerticalContentAlignment="Center"
+						  HorizontalContentAlignment="Center"
+						  Margin="4, 0, 4, 0"
+						  PlaceholderText="Факультет"
+						  IsTextSearchEnabled="True"
+						  SelectedIndex="{Binding FacultySelectedIndex, Mode=OneWayToSource}">
+					<ComboBoxItem></ComboBoxItem>
+					<ComboBoxItem>1</ComboBoxItem>
+					<ComboBoxItem>2</ComboBoxItem>
+					<ComboBoxItem>3</ComboBoxItem>
+					<ComboBoxItem>4</ComboBoxItem>
+					<ComboBoxItem>5</ComboBoxItem>
+					<ComboBoxItem>6</ComboBoxItem>
+					<ComboBoxItem>7</ComboBoxItem>
+					<ComboBoxItem>8</ComboBoxItem>
+				</ComboBox>
 
-				<ComboBox Grid.Row="2" Grid.Column="2"
-						  Grid.ColumnSpan="2"
-					  VerticalAlignment="Center"
+				<ComboBox Grid.Row="1"
+						  Grid.Column="2"
+						  Name="CoursesComboBox"
+						  VerticalAlignment="Center"
 						  HorizontalAlignment="Stretch"
-						  Margin="80, 0, 0, 20"/>
+						  VerticalContentAlignment="Center"
+						  HorizontalContentAlignment="Center"
+						  Margin="4, 0, 4, 0"
+						  PlaceholderText="Курс"
+						  IsTextSearchEnabled="True"
+						  SelectedIndex="{Binding CourseSelectedIndex, Mode=OneWayToSource}">
+					<ComboBoxItem></ComboBoxItem>
+					<ComboBoxItem>1</ComboBoxItem>
+					<ComboBoxItem>2</ComboBoxItem>
+					<ComboBoxItem>3</ComboBoxItem>
+					<ComboBoxItem>4</ComboBoxItem>
+				</ComboBox>
+
+				<ComboBox Grid.Row="1"
+						  Grid.Column="3"
+						  Name="GroupsComboBox"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Stretch"
+						  VerticalContentAlignment="Center"
+						  HorizontalContentAlignment="Center"
+						  Margin="4, 0, 4, 0"
+						  PlaceholderText="Група"
+						  IsTextSearchEnabled="True"
+						  ItemsSource="{Binding Groups}"
+						  SelectedIndex="{Binding GroupSelectedIndex, Mode=OneWayToSource}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Name}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
 			</Grid>
 			
-			<!-- Main Fields -->
+			<!-- Subject Fields -->
 			<Grid Grid.Row="1"
-				  RowDefinitions="0.1*, *, *, *, *, 0.6*"
-				  ColumnDefinitions="*, 5*, 5*, *"
+				  RowDefinitions="0.1*, *, *, *, *, *, 0.7*"
+				  ColumnDefinitions="*, 5*, 5*, 5*, 5*, *"
 				  Classes="subjectFields">
 
 				<controls:SubjectField Name="Subject1"
 									   Grid.Row="1"
 									   Grid.Column="1"
+									   Grid.ColumnSpan="2"
 									   TextSubject="{Binding SubjectNames[0].Value, Mode=TwoWay}"
 									   TextCredits="{Binding SubjectCredits[0].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[0].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject2" 
 									   Grid.Row="1"
-									   Grid.Column="2"
-									    TextSubject="{Binding SubjectNames[2].Value, Mode=TwoWay}"
-									   TextCredits="{Binding SubjectCredits[2].Value, Mode=TwoWay }"
-									   TextGrade="{Binding SubjectGrades[2].Value, Mode=TwoWay}"/>
+									   Grid.Column="3"
+									   Grid.ColumnSpan="2"
+									    TextSubject="{Binding SubjectNames[1].Value, Mode=TwoWay}"
+									   TextCredits="{Binding SubjectCredits[1].Value, Mode=TwoWay }"
+									   TextGrade="{Binding SubjectGrades[1].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject3" 
 									   Grid.Row="2"
 									   Grid.Column="1"
-									   TextSubject="{Binding SubjectNames[4].Value, Mode=TwoWay}"
-									   TextCredits="{Binding SubjectCredits[4].Value, Mode=TwoWay }"
-									   TextGrade="{Binding SubjectGrades[4].Value, Mode=TwoWay}"/>
+									   Grid.ColumnSpan="2"
+									   TextSubject="{Binding SubjectNames[2].Value, Mode=TwoWay}"
+									   TextCredits="{Binding SubjectCredits[2].Value, Mode=TwoWay }"
+									   TextGrade="{Binding SubjectGrades[2].Value, Mode=TwoWay}"/>
 
 				<controls:SubjectField Name="Subject4" 
 									   Grid.Row="2"
-									   Grid.Column="2"
-									   TextSubject="{Binding SubjectNames[6].Value, Mode=TwoWay}"
-									   TextCredits="{Binding SubjectCredits[6].Value, Mode=TwoWay }"
-									   TextGrade="{Binding SubjectGrades[6].Value, Mode=TwoWay}"/>
-
-				<controls:SubjectField Name="Subject5" 
-									   Grid.Row="3"
-									   Grid.Column="1"
-									   TextSubject="{Binding SubjectNames[1].Value, Mode=TwoWay}"
-									   TextCredits="{Binding SubjectCredits[1].Value, Mode=TwoWay }"
-									   TextGrade="{Binding SubjectGrades[1].Value, Mode=TwoWay}"/>
-				
-				<controls:SubjectField Name="Subject6" 
-									   Grid.Row="3"
-									   Grid.Column="2"
+									   Grid.Column="3"
+									   Grid.ColumnSpan="2"
 									   TextSubject="{Binding SubjectNames[3].Value, Mode=TwoWay}"
 									   TextCredits="{Binding SubjectCredits[3].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[3].Value, Mode=TwoWay}"/>
 
-				<controls:SubjectField Name="Subject7" 
-									   Grid.Row="4"
+				<controls:SubjectField Name="Subject5" 
+									   Grid.Row="3"
 									   Grid.Column="1"
+									   Grid.ColumnSpan="2"
+									   TextSubject="{Binding SubjectNames[4].Value, Mode=TwoWay}"
+									   TextCredits="{Binding SubjectCredits[4].Value, Mode=TwoWay }"
+									   TextGrade="{Binding SubjectGrades[4].Value, Mode=TwoWay}"/>
+				
+				<controls:SubjectField Name="Subject6" 
+									   Grid.Row="3"
+									   Grid.Column="3"
+									   Grid.ColumnSpan="2"
 									   TextSubject="{Binding SubjectNames[5].Value, Mode=TwoWay}"
 									   TextCredits="{Binding SubjectCredits[5].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[5].Value, Mode=TwoWay}"/>
 
+				<controls:SubjectField Name="Subject7" 
+									   Grid.Row="4"
+									   Grid.Column="1"
+									   Grid.ColumnSpan="2"
+									   TextSubject="{Binding SubjectNames[6].Value, Mode=TwoWay}"
+									   TextCredits="{Binding SubjectCredits[6].Value, Mode=TwoWay }"
+									   TextGrade="{Binding SubjectGrades[6].Value, Mode=TwoWay}"/>
+
 				<controls:SubjectField Name="Subject8" 
 									   Grid.Row="4"
-									   Grid.Column="2"
+									   Grid.Column="3"
+									   Grid.ColumnSpan="2"
 									   TextSubject="{Binding SubjectNames[7].Value, Mode=TwoWay}"
 									   TextCredits="{Binding SubjectCredits[7].Value, Mode=TwoWay }"
 									   TextGrade="{Binding SubjectGrades[7].Value, Mode=TwoWay}"/>
+
+				<controls:SubjectField Name="Subject9"
+									   Grid.Row="5"
+									   Grid.Column="2"
+									   Grid.ColumnSpan="2"
+									   BorderPadding="2, 6"
+									   TextSubject="{Binding SubjectNames[8].Value, Mode=TwoWay}"
+									   TextCredits="{Binding SubjectCredits[8].Value, Mode=TwoWay }"
+									   TextGrade="{Binding SubjectGrades[8].Value, Mode=TwoWay}"/>
 				
 				<TextBlock Name="StudentGrade"
-						   Grid.Row="5"
-						   Grid.ColumnSpan="4"
+						   Grid.Row="6"
+						   Grid.ColumnSpan="6"
 						   HorizontalAlignment="Center"
 						   VerticalAlignment="Center"
 						   Foreground="#F2E9E4"

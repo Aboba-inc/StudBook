@@ -27,16 +27,12 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Nito.AsyncEx" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <AvaloniaXaml Update="Themes\New.axaml">
       <SubType>Designer</SubType>
     </AvaloniaXaml>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Extensions\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 </Project>
