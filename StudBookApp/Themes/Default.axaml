@@ -6,7 +6,11 @@
         <Border Padding="20">
 			
              <!--Add Controls for Previewer Here-->
-
+			<Grid RowDefinitions="*,*,*">
+				<TextBlock Grid.Row="0">Hello G World I am</TextBlock>
+				<TextBlock Grid.Row="1" FontFamily="Inter">Hello Y World I am</TextBlock>
+				<!--<TextBlock Grid.Row="2" FontFamily="{DynamicResource MyFont}">Hello G World I am</TextBlock>-->
+			</Grid>
 			<!--<controls:SubjectControl />-->
 			
         </Border>
@@ -39,8 +43,17 @@
 						 Color="#D3D3D3"/>
 		<SolidColorBrush x:Key="GradeTextBoxBackgrond"
 						 Color="#D3D3D3"/>
-		
+
+		<!--<FontFamily x:Key="MyFont">avares://StudBookApp/Assets/Fonts/Inter-Medium.ttf#Inter</FontFamily>-->
+		<!--<FontFamily x:Key="MyFont">resm:StudBookApp.Assets.Fonts.Montserrat-Medium.ttf?assembly=StudBookApp#Montserrat Medium</FontFamily>-->
+
+
 	</Styles.Resources>
+
+	<Style Selector="Window.window">
+		<Setter Property="FontFamily" Value="{DynamicResource RubikFont}"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+	</Style>
 
 	<!--<Style Selector = "ComboBox/template/ContentPresenter">
 		<Setter Property = "CornerRadius" Value = "20" />
