@@ -118,7 +118,7 @@ namespace StudBookApp.Views.CustomControls
             if (_creditsTextBox is not null)
             {
                 if (string.IsNullOrEmpty(_creditsTextBox.Text)
-                    || (double.TryParse(_creditsTextBox.Text, CultureInfo.InvariantCulture, out double credit) && credit >= 0 && credit <= 12))
+                    || (double.TryParse(_creditsTextBox.Text.Replace(',', '.'), CultureInfo.InvariantCulture, out double credit) && credit >= 0 && credit <= 12))
                 {
                     _creditValue = _creditsTextBox.Text;
                 }
