@@ -9,15 +9,38 @@
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-    <AvaloniaResource Include="Themes\**" /> 
+    <AvaloniaResource Include="Themes\**" />
   </ItemGroup>
-
   
   <ItemGroup>
+    <AvaloniaResource Remove="Assets\Fonts\Inter-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Inter\Inter-Medium.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Inter\Inter-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Montserrat-Medium.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Montserrat-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Nunito\Nunito-Medium.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Nunito\Nunito-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Roboto\Roboto-Regular.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Rubik\Rubik-Medium.ttf" />
+    <AvaloniaResource Remove="Assets\Fonts\Rubik\Rubik-Regular.ttf" />
     <AvaloniaResource Remove="Themes\Default.axaml" />
     <AvaloniaResource Remove="Themes\New.axaml" />
     <AvaloniaResource Remove="Themes\StyleHelpers\StyleManager.cs" />
     <AvaloniaResource Remove="Themes\StyleHelpers\Theme.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Fonts\Inter\Inter-Medium.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Inter\Inter-Regular.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Nunito\Nunito-Medium.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Nunito\Nunito-Regular.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Roboto\Roboto-Regular.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Rubik\Rubik-Medium.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\Rubik\Rubik-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
