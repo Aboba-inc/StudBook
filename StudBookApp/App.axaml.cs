@@ -21,22 +21,6 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public static Styles FluentDark = new Styles
-        {
-            new StyleInclude(new Uri("avares://ControlCatalog/Styles"))
-            {
-                Source = new Uri("avares://Avalonia.Themes.Fluent/FluentDark.xaml")
-            },
-        };
-
-    public static Styles FluentLight = new Styles
-        {
-            new StyleInclude(new Uri("avares://ControlCatalog/Styles"))
-            {
-                Source = new Uri("avares://Avalonia.Themes.Fluent/FluentLight.xaml")
-            },
-        };
-
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
