@@ -8,7 +8,7 @@
 		xmlns:vm="clr-namespace:StudBookApp.ViewModels"
 		mc:Ignorable="d" d:DesignWidth="590" d:DesignHeight="540"
 		x:Class="StudBookApp.Views.MainWindow"
-		Icon="/Assets/icon.ico"
+		Icon="/Assets/Images/icon.ico"
 		Width="590" Height="540"
 		Title="StudBookApp"
 		CornerRadius="5"
@@ -26,11 +26,9 @@
 		<!--<vm:MainViewModel />-->
 	</Design.DataContext>
 
-	<!--<UserControl.Styles>
-		<Style Selector="titlebars|WindowsTitleBar">
-			<Setter Property="CustomBackground" Value="Yellow"/>
-		</Style>
-	</UserControl.Styles>-->
+	<!--<Window.Resources>
+		<FontFamily x:Key="MyFont">Assets/Fonts/Inter-Regular.ttf</FontFamily>
+	</Window.Resources>-->
 
 	<Window.KeyBindings>
 		<KeyBinding Gesture="CTRL+Q"
@@ -58,6 +56,7 @@
 						  HorizontalAlignment="Stretch"
 						  VerticalContentAlignment="Center"
 						  HorizontalContentAlignment="Center"
+						  FontSize="15"
 						  Margin="4, 0, 4, 0"
 						  PlaceholderText="Факультет"
 						  IsTextSearchEnabled="True"
@@ -80,6 +79,7 @@
 						  HorizontalAlignment="Stretch"
 						  VerticalContentAlignment="Center"
 						  HorizontalContentAlignment="Center"
+						  FontSize="15"
 						  Margin="4, 0, 4, 0"
 						  PlaceholderText="Курс"
 						  IsTextSearchEnabled="True"
@@ -98,6 +98,7 @@
 						  HorizontalAlignment="Stretch"
 						  VerticalContentAlignment="Center"
 						  HorizontalContentAlignment="Center"
+						  FontSize="15"
 						  Margin="4, 0, 4, 0"
 						  PlaceholderText="Група"
 						  IsTextSearchEnabled="True"
@@ -198,7 +199,8 @@
 						   VerticalAlignment="Center"
 						   Foreground="#F2E9E4"
 						   Text="{Binding Grade}"
-						   FontSize="30"/>
+						   FontSize="30"
+						   FontWeight="Normal"/>
 			</Grid>
 
 		</Grid>
