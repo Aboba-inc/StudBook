@@ -1,39 +1,38 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Styling;
+using DynamicData;
+using Nito.AsyncEx;
 using ReactiveUI;
+using StudBookApp.Models;
+using StudBookApp.Services;
+using StudBookApp.Themes.StyleHelpers;
 using StudBookApp.ViewModels.Base;
 using System;
-using System.Reactive;
-using StudBookApp.Themes.StyleHelpers;
-using StudBookApp.Models;
-using System.Linq;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Avalonia.Input;
-using StudBookApp.Services;
-using Nito.AsyncEx;
+using System.Linq;
+using System.Reactive;
 using System.Threading.Tasks;
-using Avalonia.Controls;
-using Avalonia.Media;
-using DynamicData;
-using System.Collections.Generic;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace StudBookApp.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    #region Private Properties
+    #region Fields
 
     private GroupService _groupService;
     private List<Group> _allGroups;
+
+    #endregion
+
+    #region Private Properties
+
     private Subject[] Subjects { get; set; }
 
     #endregion
 
-    #region Properties
+    #region Public Properties
 
     public string Grade { get; set; } = "0";
 
@@ -163,13 +162,45 @@ public class MainViewModel : ViewModelBase
         ChangeThemeCommand = ReactiveCommand.Create(() => ChangeTheme(styles));
     }
 
-    private void ClearFields(params BindingList<MyString>[] list)
+    private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)
     {
-        foreach (var item in list)
+        for (int i = 0; i < Subjects.Length; i++)
         {
-            for (int i = 0; i < Subjects.Length; i++)
-                item[i].Value = "";
+            if (double.TryParse(SubjectCredits[i].Value?.Replace('.', ','), out double credit) && credit >= 0 && credit <= 12)
+            {
+                Subjects[i].Credits = credit;
+            }
+            else if (string.IsNullOrEmpty(SubjectCredits[i].Value))
+            {
+                Subjects[i].Credits = 0;
+            }
         }
+        CalculateGrade();
+    }
+
+    private void SubjectGrades_ListChanged(object? sender, ListChangedEventArgs e)
+    {
+        for (int i = 0; i < Subjects.Length; i++)
+        {
+            if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade <= 100)
+            {
+                Subjects[i].Grade = grade;
+            }
+            else if (string.IsNullOrEmpty(SubjectGrades[i].Value))
+            {
+                Subjects[i].Grade = -1;
+            }
+        }
+        CalculateGrade();
+    }
+
+    private void SubjectNames_ListChanged(object? sender, ListChangedEventArgs e)
+    {
+        for (int i = 0; i < Subjects.Length; i++)
+        {
+            Subjects[i].Name = SubjectNames[i].Value ?? "";
+        }
+        CalculateGrade();
     }
 
     private async Task InitializeAsync()
@@ -187,6 +218,15 @@ public class MainViewModel : ViewModelBase
         //Groups = new ObservableCollection<Group>(data);
     }
 
+    private void ClearFields(params BindingList<MyString>[] list)
+    {
+        foreach (var item in list)
+        {
+            for (int i = 0; i < Subjects.Length; i++)
+                item[i].Value = "";
+        }
+    }
+
     private void SetSubjects()
     {
         if (GroupSelectedIndex >= 0)
@@ -201,7 +241,7 @@ public class MainViewModel : ViewModelBase
 
     private void FilterGroups()
     {
-        if(_allGroups is not null)
+        if (_allGroups is not null)
         {
             Groups = new ObservableCollection<Group>() { new Group() };
             if (FacultySelectedIndex > 0 && CourseSelectedIndex > 0)
@@ -232,55 +272,17 @@ public class MainViewModel : ViewModelBase
         }
     }
 
-    private void SubjectCredits_ListChanged(object? sender, ListChangedEventArgs e)
-    {
-        for (int i = 0; i < Subjects.Length; i++)
-        {
-            if (double.TryParse(SubjectCredits[i].Value?.Replace('.', ','), out double credit) && credit >= 0 && credit <= 12)
-            {
-                Subjects[i].Credits = credit;
-            }
-            else if (string.IsNullOrEmpty(SubjectCredits[i].Value))
-            {
-                Subjects[i].Credits = 0;
-            }
-        }
-        CalculateGrade();
-    }
-
-    private void SubjectGrades_ListChanged(object? sender, ListChangedEventArgs e)
-    {
-        for (int i = 0; i < Subjects.Length; i++)
-        {
-            if (int.TryParse(SubjectGrades[i].Value, out int grade) && grade >= 0 && grade <= 100)
-            {
-                Subjects[i].Grade = grade;
-            }
-            else if (string.IsNullOrEmpty(SubjectGrades[i].Value))
-            {
-                Subjects[i].Grade = 0;
-            }
-        }
-        CalculateGrade();
-    }
-
-    private void SubjectNames_ListChanged(object? sender, ListChangedEventArgs e)
-    {
-        for (int i = 0; i < Subjects.Length; i++)
-        {
-            Subjects[i].Name = SubjectNames[i].Value ?? "";
-        }
-        CalculateGrade();
-    }
-
     private void CalculateGrade()
     {
         double grade = 0;
-        double creditsSum = Subjects.Where(s => s.Credits > 0 && s.Grade > 0).Sum(s => s.Credits);
-        foreach (var subject in Subjects.Where(s => s.Credits > 0 && s.Grade > 0))
+        var subjectsToCalculate = Subjects.Where(s => s.Credits > 0 && s.Grade >= 0);
+        double creditsSum = subjectsToCalculate.Sum(s => s.Credits);
+
+        foreach (var subject in subjectsToCalculate)
         {
             grade += (subject.Credits / creditsSum) * subject.Grade;
         }
+
         Grade = Math.Round(grade, 2).ToString();
         OnPropertyChanged("Grade");
     }
