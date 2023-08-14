@@ -20,10 +20,6 @@
 	</Application.Styles>
 
 	<Application.Resources>
-		<!--<FontFamily x:Key="MontserratFont">Assets\Fonts\Montserrat-Regular.ttf#Montserrat</FontFamily>-->
-		<!--<FontFamily x:Key="MontserratMediumFont">Assets\Fonts\Montserrat-Medium.ttf#MontserratMedium</FontFamily>-->
-		<!--<FontFamily x:Key="InterFont">Assets\Fonts\Inter-Regular.ttf#Inter</FontFamily>-->
-		<!--<FontFamily x:Key="InterMediumFont">Assets\Fonts\Inter-Medium.ttf#InterMedium</FontFamily>-->
 		<FontFamily x:Key="MontserratFont">resm:StudBookApp.Assets.Fonts.Montserrat.?assembly=StudBookApp#Montserrat</FontFamily>
 		<FontFamily x:Key="InterFont">resm:StudBookApp.Assets.Fonts.Inter.?assembly=StudBookApp#Inter</FontFamily>
 		<FontFamily x:Key="NunitoFont">resm:StudBookApp.Assets.Fonts.Nunito.?assembly=StudBookApp#Nunito</FontFamily>
