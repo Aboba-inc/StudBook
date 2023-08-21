@@ -17,7 +17,7 @@ namespace StudBookApp.Views.CustomControls
         string? _creditValue;
 
         public static readonly StyledProperty<Thickness> BorderPaddingProperty =
-        AvaloniaProperty.Register<SubjectField, Thickness>(nameof(BackgroundSubject));
+        AvaloniaProperty.Register<SubjectField, Thickness>(nameof(BorderPadding));
 
         public Thickness BorderPadding
         {
