@@ -10,7 +10,7 @@ namespace StudBookApp.Themes.StyleHelpers
     public sealed class StyleManager
     {
         private readonly StyleInclude _defaultStyle = CreateStyle("avares://StudBookApp/Themes/Default.axaml");
-        private readonly StyleInclude _newStyle = CreateStyle("avares://StudBookApp/Themes/New.axaml");
+        private readonly StyleInclude _newStyle = CreateStyle("avares://StudBookApp/Themes/Khai.axaml");
         private readonly Window _window;
 
         public StyleManager(Window window)
@@ -38,7 +38,7 @@ namespace StudBookApp.Themes.StyleHelpers
             _window.Styles[0] = theme switch
             {
                 Theme.Default => _defaultStyle,
-                Theme.New => _newStyle,
+                Theme.Khai => _newStyle,
                 _ => throw new ArgumentOutOfRangeException(nameof(theme))
             };
 
@@ -51,8 +51,8 @@ namespace StudBookApp.Themes.StyleHelpers
             // supported color schemes one by one.
             UseTheme(CurrentTheme switch
             {
-                Theme.Default => Theme.New,
-                Theme.New => Theme.Default,
+                Theme.Default => Theme.Khai,
+                Theme.Khai => Theme.Default,
                 _ => throw new ArgumentOutOfRangeException(nameof(CurrentTheme))
             });
         }

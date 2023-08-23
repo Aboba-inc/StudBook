@@ -26,7 +26,7 @@
     <AvaloniaResource Remove="Assets\Fonts\Rubik\Rubik-Medium.ttf" />
     <AvaloniaResource Remove="Assets\Fonts\Rubik\Rubik-Regular.ttf" />
     <AvaloniaResource Remove="Themes\Default.axaml" />
-    <AvaloniaResource Remove="Themes\New.axaml" />
+    <AvaloniaResource Remove="Themes\Khai.axaml" />
     <AvaloniaResource Remove="Themes\StyleHelpers\StyleManager.cs" />
     <AvaloniaResource Remove="Themes\StyleHelpers\Theme.cs" />
   </ItemGroup>
@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Update="Themes\New.axaml">
+    <AvaloniaXaml Update="Themes\Khai.axaml">
       <SubType>Designer</SubType>
     </AvaloniaXaml>
   </ItemGroup>

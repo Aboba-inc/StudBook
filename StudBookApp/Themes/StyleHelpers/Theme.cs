@@ -9,6 +9,6 @@ namespace StudBookApp.Themes.StyleHelpers;
     public enum Theme
     {
         Default, 
-        New
+        Khai
     }
 

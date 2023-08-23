@@ -1,0 +1,101 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:titlebars="clr-namespace:StudBookApp.Views.CustomTitleBars;assembly=StudBookApp"
+		xmlns:controls="clr-namespace:StudBookApp.Views.CustomControls">
+	<Design.PreviewWith>
+		<Border Padding="20">
+
+			<!--Add Controls for Previewer Here-->
+
+			<controls:SubjectField />
+
+		</Border>
+	</Design.PreviewWith>
+
+	<!-- Colors -->
+	<Styles.Resources>
+
+		<SolidColorBrush x:Key="WindowBackground"
+						 Color="#004E98" />
+
+		<SolidColorBrush x:Key="TitleBarBackground"
+						 Color="#3A6EA5" />
+		<SolidColorBrush x:Key="TitleBarForeground"
+						 Color="White" />
+
+		<SolidColorBrush x:Key="ComboBoxBackground"
+						 Color="#EBEBEB" />
+		<SolidColorBrush x:Key="ComboBoxForeground"
+						 Color="Black" />
+		<SolidColorBrush x:Key="ComboBoxBackgroundHover"
+						 Color="#C0BAB6" />
+		<SolidColorBrush x:Key="ComboBoxBackgroundPressed"
+						 Color="#7B7774" />
+
+		<SolidColorBrush x:Key="SubjectTextBoxBackgrond"
+						 Color="#EBEBEB"/>
+		<SolidColorBrush x:Key="CreditsTextBoxBackgrond"
+						 Color="#C0C0C0"/>
+		<SolidColorBrush x:Key="GradeTextBoxBackgrond"
+						 Color="#C0C0C0"/>
+
+	</Styles.Resources>
+
+	<!-- Font -->
+	<Style Selector="Window.window">
+		<Setter Property="FontFamily" Value="{DynamicResource RubikFont}"/>
+		<Setter Property="FontWeight" Value="Normal"/>
+	</Style>
+
+	<!-- Combo Box -->
+	<Style Selector = "ComboBox">
+		<Style Selector = "^:pointerover/template/Border#Background">
+			<Setter Property = "Background" Value ="{StaticResource ComboBoxBackgroundHover}" />
+		</Style>
+
+		<Style Selector = "^:pressed/template/Border#Background">
+			<Setter Property = "Background" Value ="{StaticResource ComboBoxBackgroundPressed}" />
+		</Style>
+
+		<Setter Property = "Foreground" Value = "{StaticResource ComboBoxForeground}" />
+		<Setter Property = "Background" Value = "{StaticResource ComboBoxBackground}" />
+		<Setter Property = "CornerRadius" Value = "9" />
+	</Style>
+
+	<!-- Main Grid -->
+	<Style Selector="Grid.main">
+		<Setter Property="Background" Value="{StaticResource WindowBackground}" />
+	</Style>
+
+	<!-- Title Bar -->
+	<Style Selector="titlebars|WindowsTitleBar.titlebar">
+		<Setter Property="Background" Value="{StaticResource TitleBarBackground}"/>
+
+		<Style Selector="^ Menu > MenuItem">
+			<Setter Property="Foreground" Value="{StaticResource TitleBarForeground}"/>
+
+			<Style Selector = "^:pointerover/template/ContentPresenter">
+				<Setter Property = "Foreground" Value ="{StaticResource TitleBarForeground}" />
+			</Style>
+
+			<Style Selector = "^:not(:pointerover)/template/ContentPresenter">
+				<Setter Property = "Foreground" Value ="{StaticResource TitleBarForeground}" />
+			</Style>
+		</Style>
+
+		<Style Selector="^ Path">
+			<Setter Property="Fill" Value="{StaticResource TitleBarForeground}"/>
+		</Style>
+	</Style>
+
+	<!-- Subject Fields -->
+	<Style Selector="Grid.subjectFields">
+		<Style Selector="^ controls|SubjectField">
+			<Setter Property="BackgroundSubject" Value="{StaticResource SubjectTextBoxBackgrond}"/>
+			<Setter Property="BackgroundCredits" Value="{StaticResource CreditsTextBoxBackgrond}"/>
+			<Setter Property="BackgroundGrade" Value="{StaticResource GradeTextBoxBackgrond}"/>
+			<Setter Property="BorderPadding" Value="6"/>
+		</Style>
+	</Style>
+
+</Styles>
