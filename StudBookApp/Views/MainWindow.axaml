@@ -11,7 +11,6 @@
 		Icon="/Assets/Images/icon.ico"
 		Width="590" Height="540"
 		Title="StudBookApp"
-		CornerRadius="5"
 		WindowStartupLocation="CenterScreen"
 		ExtendClientAreaToDecorationsHint="True"
 		ExtendClientAreaChromeHints="NoChrome"
