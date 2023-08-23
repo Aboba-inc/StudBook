@@ -125,8 +125,8 @@ public class MainViewModel : ViewModelBase
     {
         styles?.UseTheme(styles.CurrentTheme switch
         {
-            Theme.Default => Theme.New,
-            Theme.New => Theme.Default,
+            Theme.Default => Theme.Khai,
+            Theme.Khai => Theme.Default,
             _ => throw new ArgumentOutOfRangeException(nameof(styles.CurrentTheme))
         });
     }
