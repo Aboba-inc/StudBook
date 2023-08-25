@@ -46,25 +46,14 @@ public class MainViewModel : ViewModelBase
     public INotifyTaskCompletion InitializationNotifier
     {
         get => _initializationNotifier;
-        private set
-        {
-            _initializationNotifier = value;
-            OnPropertyChanged();
-        }
+        private set => Set(ref _initializationNotifier, value);
     }
 
     private ObservableCollection<Group> _groups;
     public ObservableCollection<Group> Groups
     {
         get => _groups;
-        set
-        {
-            if (value != null)
-            {
-                _groups = value;
-                OnPropertyChanged();
-            }
-        }
+        set => Set(ref _groups, value);
     }
 
     private int _groupSelectedIndex;
@@ -73,10 +62,9 @@ public class MainViewModel : ViewModelBase
         get => _groupSelectedIndex;
         set
         {
-            _groupSelectedIndex = value;
+            Set(ref _groupSelectedIndex, value);
             ClearFields(SubjectNames, SubjectCredits, SubjectGrades);
             SetSubjects();
-            OnPropertyChanged();
         }
     }
 
@@ -86,9 +74,8 @@ public class MainViewModel : ViewModelBase
         get => _facultySelectedIndex;
         set
         {
-            _facultySelectedIndex = value;
+            Set(ref _facultySelectedIndex, value);
             FilterGroups();
-            OnPropertyChanged();
         }
     }
 
@@ -98,9 +85,8 @@ public class MainViewModel : ViewModelBase
         get => _courseSelectedIndex;
         set
         {
-            _courseSelectedIndex = value;
+            Set(ref _courseSelectedIndex, value);
             FilterGroups();
-            OnPropertyChanged();
         }
     }
 
