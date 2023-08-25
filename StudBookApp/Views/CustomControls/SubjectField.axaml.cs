@@ -153,8 +153,7 @@ namespace StudBookApp.Views.CustomControls
                 || key[0] != 'D'
                 || !Char.IsDigit(key[1])
                 || (_gradeTextBox.SelectionStart == _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), key[1].ToString()), out int grade1) && grade1 > 100)
-                || (_gradeTextBox!.SelectionStart != _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Remove(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), Math.Abs(_gradeTextBox.SelectionEnd - _gradeTextBox.SelectionStart)).Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), key[1].ToString()), out int grade2) && grade2 > 100)
-                || (_gradeTextBox.Text.Length > 0 && Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd) == 0 && key[1] == '0'))
+                || (_gradeTextBox.SelectionStart != _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Remove(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), Math.Abs(_gradeTextBox.SelectionEnd - _gradeTextBox.SelectionStart)).Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), key[1].ToString()), out int grade2) && grade2 > 100))
             {
                 e.Handled = true;
             }
