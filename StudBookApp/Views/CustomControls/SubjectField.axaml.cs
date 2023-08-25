@@ -162,10 +162,11 @@ namespace StudBookApp.Views.CustomControls
         private void GrateTextBox_PastingFromClipboard(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             string? text = TopLevel.GetTopLevel(this)?.Clipboard?.GetTextAsync().Result;
-            if (!int.TryParse(_gradeTextBox?.Text + text, out int grade)
-                || grade > 100
-                || grade < 0
-                || (_gradeTextBox?.Text?.Length == 0 && grade == 0))
+            if (!int.TryParse(text, out int _)
+                || _gradeTextBox is null
+                || _gradeTextBox.Text is null
+                || (_gradeTextBox.SelectionStart == _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), text), out int grade1) && grade1 > 100)
+                || (_gradeTextBox.SelectionStart != _gradeTextBox.SelectionEnd && int.TryParse(_gradeTextBox.Text.Remove(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), Math.Abs(_gradeTextBox.SelectionEnd - _gradeTextBox.SelectionStart)).Insert(Math.Min(_gradeTextBox.SelectionStart, _gradeTextBox.SelectionEnd), text), out int grade2) && grade2 > 100))
             {
                 e.Handled = true;
             }
